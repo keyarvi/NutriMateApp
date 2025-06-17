@@ -11,17 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="5dp"
         android:layout_marginTop="30dp"
         android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/backButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
-            android:tint="@android:color/white"
-            android:contentDescription="Back" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back_ic"
+            android:layout_marginLeft="20dp"
+            android:contentDescription="Back"
+            app:tint="@android:color/white" />
 
         <View
             android:layout_width="0dp"
@@ -30,11 +31,12 @@
 
         <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_menu"
-            android:tint="@android:color/white"
-            android:contentDescription="Menu" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/menu_ic"
+            android:layout_marginRight="20dp"
+            android:contentDescription="Menu"
+            app:tint="@android:color/white" />
     </LinearLayout>
 
     <!-- Scrollable Content -->
@@ -54,12 +56,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:lineSpacingExtra="6dp"
                 android:text="CREATE YOUR\nACCOUNT"
                 android:textColor="@android:color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:lineSpacingExtra="6dp"
-                android:layout_marginBottom="40dp" />
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
             <!-- Email -->
             <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +82,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="@color/gray"
                     android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +104,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
                     android:inputType="textPersonName"
-                    android:textColorHint="@color/gray"
                     android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +126,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Username"
                     android:inputType="text"
-                    android:textColorHint="@color/gray"
                     android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,7 +149,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/gray"
                     android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,20 +172,20 @@
                     android:layout_height="wrap_content"
                     android:hint="Repeat Password"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/gray"
                     android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Create Account Button -->
             <Button
+                android:id="@+id/createbutton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#004AAD"
                 android:text="Create Account"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:background="@drawable/button_blue_rounded"
-                android:layout_marginBottom="24dp"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
