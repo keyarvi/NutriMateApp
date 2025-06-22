@@ -30,6 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".PersonalizeProgressActivity" />
+        <activity android:name=".PrimaryGoal" />
+        <activity
+            android:name=".HeightActivity"
+            android:exported="false" />
+
+
     </application>
 
 </manifest>
