@@ -35,7 +35,7 @@
 
         <!-- Subtitle -->
         <TextView
-            android:text="Knowing where you're starting and where you want to go helps us tailor your calorie and macro plan. (You can change this later)"
+            android:text="Your starting point and goals are key to building a plan that fits your nutritional needs."
             android:textSize="14sp"
             android:textColor="#FFFFFF"
             android:gravity="center"

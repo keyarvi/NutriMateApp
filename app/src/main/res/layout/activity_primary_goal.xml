@@ -45,7 +45,7 @@
                 android:id="@+id/subtitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="This helps us tailor your plan to match your intentions — so every recommendation moves you closer to what matters most."
+                android:text="This helps us shape a plan that truly aligns with your needs — so progress always feels meaningful."
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:textAlignment="center"
@@ -53,6 +53,7 @@
 
             <!-- Goal Option Buttons -->
             <Button
+                android:id="@+id/loseWeightBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -62,49 +63,27 @@
                 android:textColor="@color/white" />
 
             <Button
+
+                android:id="@+id/gainMuscleBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:text="Gain Weight"
-                android:textStyle="bold"
                 android:backgroundTint="#004AAD"
-                android:textColor="@color/white" />
+                android:text="Gain Weight and Muscle"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
             <Button
+                android:id="@+id/maintainWeightBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:text="Improve My Eating Habits"
-                android:textStyle="bold"
                 android:backgroundTint="#004AAD"
-                android:textColor="@color/white"  />
+                android:text="Maintain Weight"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="Prevent Health Issues"
-                android:textStyle="bold"
-                android:backgroundTint="#004AAD"
-                android:textColor="@color/white" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="Manage Health Conditions"
-                android:textStyle="bold"
-                android:backgroundTint="#004AAD"
-                android:textColor="@color/white"  />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="Feel More In Control"
-                android:textStyle="bold"
-                android:backgroundTint="#004AAD"
-                android:textColor="@color/white"  />
 
             <!-- Navigation Buttons (Back + Continue) -->
             <LinearLayout
