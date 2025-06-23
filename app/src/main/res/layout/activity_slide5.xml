@@ -29,7 +29,7 @@
 
             <!-- Title -->
             <TextView
-                android:text="What should we call you?"
+                android:text="What is your biological sex?"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -40,7 +40,7 @@
 
             <!-- Subtitle -->
             <TextView
-                android:text="We are so happy you're here! What name would you like us to call you?"
+                android:text="Knowing your biological sex allows us to personalize your Basal Metabolic Rate (BMR) and daily calorie recommendations"
                 android:textSize="14sp"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
@@ -49,15 +49,17 @@
                 android:layout_height="wrap_content" />
 
             <!-- Name Input -->
-            <EditText
-                android:id="@+id/editTextText"
+            <Button
+                android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Name"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF" />
+                android:text="Male" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Female" />
 
         </LinearLayout>
     </ScrollView>
@@ -86,9 +88,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="Continue"
             android:backgroundTint="@android:color/holo_blue_dark"
             android:textColor="@android:color/white"
-            android:text="Continue"
             android:layout_marginStart="8dp"
             android:backgroundTint="#004AAD"
             android:textColor="#FFFFFF" />
