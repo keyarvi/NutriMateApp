@@ -76,6 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#FFFFFF"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:text="Back"
             android:backgroundTint="#004AAD" />
 
@@ -84,6 +86,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textColor="@android:color/white"
             android:text="Continue"
             android:layout_marginStart="8dp"
             android:backgroundTint="#004AAD"
