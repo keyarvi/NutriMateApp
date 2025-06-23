@@ -3,8 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="@drawable/mainbackground"
-    android:background="@drawable/bg_nutrimate">
+    android:background="@drawable/mainbackground">
 
     <!-- Scrollable Content -->
     <ScrollView
@@ -17,36 +16,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
+            android:padding="17dp"
             android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/birthdayText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="16dp"
                 android:text="When is your birthday?"
+                android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:layout_marginBottom="16dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/subBirthText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Knowing your age helps us tailor your plan to fit your metabolic needs."
-                android:textSize="12sp"
-                android:textColor="@android:color/black"
                 android:layout_marginBottom="24dp"
-                android:textAlignment="center" />
+                android:text="Knowing your age helps us tailor your plan to fit your metabolic needs."
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <DatePicker
                 android:id="@+id/datePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
-                android:spinnersShown="true"
-                android:datePickerMode="spinner" />
+                android:datePickerMode="spinner"
+                android:spinnersShown="true" />
 
         </LinearLayout>
     </ScrollView>
@@ -64,20 +64,19 @@
             android:id="@+id/backButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/darker_gray"
+            android:backgroundTint="#EAEAED"
             android:text="Back"
-            android:textColor="@android:color/white" />
+            android:textColor="#050505" />
 
         <Button
             android:id="@+id/continueButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
+            android:backgroundTint="#057EDB"
             android:text="Continue"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="8dp" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </LinearLayout>

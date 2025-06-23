@@ -27,12 +27,15 @@
                 android:layout_marginBottom="16dp">
             </LinearLayout>
 
+
+
             <!-- Title -->
             <TextView
                 android:text="What should we call you?"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -40,7 +43,7 @@
 
             <!-- Subtitle -->
             <TextView
-                android:text="We are so happy you're here! What name would you like us to call you?"
+                android:text="We are so happy you're here! What name would you\nlike us to call you?"
                 android:textSize="14sp"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
@@ -75,22 +78,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="@android:color/darker_gray"
-            android:textColor="@android:color/white"
+            android:backgroundTint="#EAEAED"
             android:text="Back"
-            android:backgroundTint="#004AAD" />
+            android:textColor="#050505" />
 
         <Button
             android:id="@+id/continueButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:textColor="@android:color/white"
-            android:text="Continue"
             android:layout_marginStart="8dp"
-            android:backgroundTint="#004AAD"
+            android:layout_weight="1"
+            android:backgroundTint="#057EDB"
+            android:text="Continue"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 </LinearLayout>

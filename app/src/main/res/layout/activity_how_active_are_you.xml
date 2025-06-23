@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainbackground"
-    android:padding="24dp">
+    android:padding="17dp">
 
+    <!-- 🔼 Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/bottomButtons"
         android:fillViewport="true">
 
         <LinearLayout
@@ -21,11 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="How active are you?"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
-                android:paddingTop="60dp"
+                android:paddingTop="20dp"
                 android:paddingBottom="10dp" />
 
             <!-- Subtitle -->
@@ -236,36 +238,35 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Buttons -->
+    <!-- 🔽 Bottom Navigation Buttons (uniform) -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="16dp">
+        android:gravity="center">
 
         <Button
             android:id="@+id/back_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#F8F5F5"
-            android:padding="12dp"
+            android:backgroundTint="#EAEAED"
             android:text="Back"
-            android:textColor="#000000" />
+            android:textColor="#050505"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/continue_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#057EDB"
             android:text="Continue"
-            android:backgroundTint="#004AAD"
             android:textColor="#FFFFFF"
-            android:layout_marginStart="12dp"
-            android:padding="12dp" />
+            android:gravity="center" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.example.nutrimateapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +43,7 @@ public class PrimaryGoal extends AppCompatActivity {
 
         // Navigation buttons
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(PrimaryGoal.this, PersonalizeProgressActivity.class);
+            Intent intent = new Intent(PrimaryGoal.this, Weight.class);
             startActivity(intent);
             finish();
         });
@@ -53,7 +52,7 @@ public class PrimaryGoal extends AppCompatActivity {
             if (selectedGoal.isEmpty()) {
                 Toast.makeText(this, "Please select a goal first.", Toast.LENGTH_SHORT).show();
             } else {
-                Intent intent = new Intent(PrimaryGoal.this, PersonalizeProgressActivity.class);
+                Intent intent = new Intent(PrimaryGoal.this, Weight.class);
                 intent.putExtra("goal", selectedGoal); // Pass goal to next activity
                 startActivity(intent);
                 finish();

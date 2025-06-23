@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PersonalizeProgressActivity extends AppCompatActivity {
+public class Weight extends AppCompatActivity {
 
     private TextView currentWeightText, targetWeightText;
     private SeekBar currentWeightSeekBar, targetWeightSeekBar;
@@ -17,7 +17,7 @@ public class PersonalizeProgressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personalize_progress);
+        setContentView(R.layout.activity_weight);
 
         // Initialize views
         currentWeightText = findViewById(R.id.currentWeightText);
@@ -57,7 +57,7 @@ public class PersonalizeProgressActivity extends AppCompatActivity {
 
         // 🔙 Back Button Functionality
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(PersonalizeProgressActivity.this, PrimaryGoal.class); // Replace with your actual previous activity
+            Intent intent = new Intent(Weight.this, PrimaryGoal.class); // Replace with your actual previous activity
             startActivity(intent);
             finish();
         });
@@ -68,7 +68,7 @@ public class PersonalizeProgressActivity extends AppCompatActivity {
             int targetWeight = 71 + targetWeightSeekBar.getProgress();
 
             // Optional: Pass values to next activity
-            Intent intent = new Intent(PersonalizeProgressActivity.this, PrimaryGoal.class); // Replace with your actual next activity
+            Intent intent = new Intent(Weight.this, PrimaryGoal.class); // Replace with your actual next activity
             intent.putExtra("currentWeight", currentWeight);
             intent.putExtra("targetWeight", targetWeight);
             startActivity(intent);

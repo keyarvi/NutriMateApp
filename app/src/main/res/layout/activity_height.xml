@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,111 +19,116 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="top"
-        android:padding="24dp"
+        android:padding="17dp"
         android:background="@android:color/transparent">
 
-
-
-        <!-- Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="How tall are you?"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Subtitle -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Knowing your height allows us to estimate healthy ranges for your goals."
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:layout_marginBottom="40dp" />
-
-        <!-- Height Selector Container -->
+        <!-- Scrollable / Weighted Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:orientation="vertical">
 
-            <!-- Custom icon/marker (left) -->
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/pointerheight"
-                />
-
-            <!-- Height value display -->
-            <LinearLayout
+            <!-- Title -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginHorizontal="16dp">
+                android:text="How tall are you?"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="8dp" />
 
-                <TextView
-                    android:id="@+id/heightValue"
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Knowing your height allows us to estimate healthy ranges for your goals."
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_marginBottom="40dp" />
+
+            <!-- Height Selector Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- Icon -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/pointerheight" />
+
+                <!-- Height Display -->
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="180"
-                    android:textColor="@color/white"
-                    android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="16dp">
 
-                <TextView
+                    <TextView
+                        android:id="@+id/heightValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="180"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="cm"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Vertical SeekBar -->
+                <SeekBar
+                    android:id="@+id/heightSeekBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="cm"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:layout_height="250dp"
+                    android:rotation="270"
+                    android:max="60"
+                    android:progress="40"
+                    android:progressTint="@color/white"
+                    android:thumbTint="@color/white" />
             </LinearLayout>
-
-            <!-- Vertical SeekBar as fake ruler -->
-            <SeekBar
-                android:id="@+id/heightSeekBar"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:rotation="270"
-                android:max="60"
-                android:progress="40"
-                android:progressTint="@color/white"
-                android:thumbTint="@color/white" />
         </LinearLayout>
 
-        <!-- Bottom Navigation Buttons -->
+        <!-- 🔽 Fixed Bottom Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="24dp">
+            android:gravity="center">
 
             <Button
                 android:id="@+id/backButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#EAEAED"
                 android:text="Back"
-                android:backgroundTint="#004AAD"
-                android:textColor="@android:color/white"
-                android:layout_marginEnd="8dp" />
+                android:textColor="#050505"
+                android:gravity="center" />
 
             <Button
                 android:id="@+id/continueButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:backgroundTint="#057EDB"
                 android:text="Continue"
-                android:backgroundTint="#004AAD"
-                android:textColor="@android:color/white"
-                android:layout_marginStart="8dp" />
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

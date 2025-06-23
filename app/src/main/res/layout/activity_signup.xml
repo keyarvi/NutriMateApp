@@ -181,7 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="24dp"
-                android:backgroundTint="#004AAD"
+                android:backgroundTint="#057EDB"
                 android:text="Create Account"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"

@@ -96,7 +96,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="#004AAD"
+        android:backgroundTint="#057EDB"
         android:elevation="4dp"
         android:paddingVertical="12dp"
         android:text="Continue"
