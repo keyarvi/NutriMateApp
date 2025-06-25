@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/dialog_bg"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tvAddMealTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a Meal"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvAddMealSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose how you'd like to log your meal."
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginTop="4dp" />
+
+    <!-- Photo Entry -->
+    <LinearLayout
+        android:id="@+id/btnPhotoEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/option_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_camera"
+                android:tint="#1976D2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo Entry"
+                android:textSize="16sp"
+                android:textColor="#1976D2"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Just point & shoot - We will analyze it!"
+            android:textSize="12sp"
+            android:textColor="#888888"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="36dp"/>
+    </LinearLayout>
+
+    <!-- Upload Picture -->
+    <LinearLayout
+        android:id="@+id/btnUploadPicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/option_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_upload"
+                android:tint="#1976D2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Picture"
+                android:textSize="16sp"
+                android:textColor="#1976D2"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select a saved meal photo to analyze."
+            android:textSize="12sp"
+            android:textColor="#888888"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="36dp"/>
+    </LinearLayout>
+
+</LinearLayout>
