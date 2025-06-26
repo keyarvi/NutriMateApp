@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainbackground">
 
-    <!-- Logo and Title Section -->
     <LinearLayout
         android:id="@+id/logoSection"
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <!-- App Logo -->
         <ImageView
             android:id="@+id/appLogo"
             android:layout_width="300dp"
@@ -23,7 +22,6 @@
             android:contentDescription="Nutrimate Logo" />
     </LinearLayout>
 
-    <!-- Login Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/loginCard"
         android:layout_width="match_parent"
@@ -39,7 +37,6 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Email Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +58,6 @@
                     android:background="@android:color/transparent" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Password Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +80,6 @@
                     android:background="@android:color/transparent" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Remember Me & Forgot Password -->
             <LinearLayout
                 android:id="@+id/forgot"
                 android:layout_width="match_parent"
@@ -95,6 +90,7 @@
                 android:weightSum="1">
 
                 <CheckBox
+                    android:id="@+id/checkBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -102,7 +98,11 @@
                     android:textSize="14sp" />
 
                 <TextView
+<<<<<<< HEAD
+                    android:id="@+id/forgotPasswordText"
+=======
                     android:id="@+id/forgot"
+>>>>>>> 076ecd53f547c1499594a8740c5834eedb22a1a4
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -113,7 +113,6 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Login Button -->
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
@@ -125,7 +124,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- Create Account Text -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,36 +1,51 @@
 package com.example.nutrimateapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class Complete extends AppCompatActivity {
+
+    LinearLayout starsLayout;
+    ImageView[] stars = new ImageView[5];
+    ImageView iconWaterDrop, iconSearch, iconLightning, iconMedical, mainCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_complete);
+        setContentView(R.layout.activity_complete); // Your XML filename
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Reference views
+        starsLayout = findViewById(R.id.stars_layout);
+        iconWaterDrop = findViewById(R.id.icon_water_drop);
+        iconSearch = findViewById(R.id.icon_search);
+        iconLightning = findViewById(R.id.icon_lightning);
+        iconMedical = findViewById(R.id.icon_medical);
+        mainCheck = findViewById(R.id.main_check_circle);
 
-        // ✅ Continue to Result screen
-        Button continueButton = findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(view -> {
-            Intent intent = new Intent(Complete.this, Result.class);
-            startActivity(intent);
-            finish();
-        });
+        // Load animations
+        Animation pulse = AnimationUtils.loadAnimation(this, R.anim.pulse);
+        Animation bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        mainCheck.startAnimation(pulse);
+        iconWaterDrop.startAnimation(bounce);
+        iconSearch.startAnimation(bounce);
+        iconLightning.startAnimation(bounce);
+        iconMedical.startAnimation(bounce);
+
+        // Get stars and make them clickable
+        for (int i = 0; i < 5; i++) {
+            stars[i] = (ImageView) starsLayout.getChildAt(i);
+            final int index = i;
+            stars[i].setOnClickListener(v -> {
+                Toast.makeText(this, "You rated " + (index + 1) + " star" + (index == 0 ? "" : "s"), Toast.LENGTH_SHORT).show();
+            });
+        }
     }
 }
