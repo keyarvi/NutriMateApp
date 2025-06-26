@@ -1,5 +1,7 @@
 package com.example.nutrimateapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +14,14 @@ public class HowActiveAreYou extends AppCompatActivity {
 
     LinearLayout optionSedentary, optionLight, optionModerate, optionVery, optionSuper;
     Button backButton, continueButton;
-    String selectedOption = "";
+
+    String selectedLabel = "";
+    float selectedMultiplier = 0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_how_active_are_you); // Make sure your XML is named correctly
+        setContentView(R.layout.activity_how_active_are_you);
 
         optionSedentary = findViewById(R.id.option_sedentary);
         optionLight = findViewById(R.id.option_light);
@@ -27,23 +31,28 @@ public class HowActiveAreYou extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
         continueButton = findViewById(R.id.continue_button);
 
-        View.OnClickListener selectListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetSelections();
-                int id = view.getId();
-                if (id == R.id.option_sedentary) {
-                    selectedOption = "Sedentary";
-                } else if (id == R.id.option_light) {
-                    selectedOption = "Lightly Active";
-                } else if (id == R.id.option_moderate) {
-                    selectedOption = "Moderately Active";
-                } else if (id == R.id.option_very) {
-                    selectedOption = "Very Active";
-                } else if (id == R.id.option_super) {
-                    selectedOption = "Super Active";
-                }
+        View.OnClickListener selectListener = view -> {
+            resetSelections();
+
+            if (view == optionSedentary) {
+                selectedLabel = "Sedentary";
+                selectedMultiplier = 1.2f;
+            } else if (view == optionLight) {
+                selectedLabel = "Lightly Active";
+                selectedMultiplier = 1.375f;
+            } else if (view == optionModerate) {
+                selectedLabel = "Moderately Active";
+                selectedMultiplier = 1.55f;
+            } else if (view == optionVery) {
+                selectedLabel = "Very Active";
+                selectedMultiplier = 1.725f;
+            } else if (view == optionSuper) {
+                selectedLabel = "Super Active";
+                selectedMultiplier = 1.9f;
             }
+
+            view.setBackgroundResource(R.drawable.option_frame_blue);
+            Toast.makeText(this, "Selected: " + selectedLabel, Toast.LENGTH_SHORT).show();
         };
 
         optionSedentary.setOnClickListener(selectListener);
@@ -55,11 +64,18 @@ public class HowActiveAreYou extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
 
         continueButton.setOnClickListener(v -> {
-            if (selectedOption.isEmpty()) {
+            if (selectedLabel.isEmpty()) {
                 Toast.makeText(this, "Please select an activity level", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Selected: " + selectedOption, Toast.LENGTH_SHORT).show();
-                // TODO: Save or pass selectedOption
+                SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("USER_ACTIVITY_LABEL", selectedLabel);
+                editor.putFloat("USER_ACTIVITY_MULTIPLIER", selectedMultiplier);
+                editor.apply();
+
+                Intent intent = new Intent(HowActiveAreYou.this, Complete.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

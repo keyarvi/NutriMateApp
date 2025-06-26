@@ -1,6 +1,7 @@
 package com.example.nutrimateapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -13,6 +14,8 @@ public class Weight extends AppCompatActivity {
     private TextView currentWeightText, targetWeightText;
     private SeekBar currentWeightSeekBar, targetWeightSeekBar;
     private Button backButton, continueButton;
+
+    private final int minWeight = 71;  // Minimum weight represented by SeekBars
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +30,22 @@ public class Weight extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         continueButton = findViewById(R.id.continueButton);
 
-        // Set max and initial values
+        // Set max values
         currentWeightSeekBar.setMax(60); // 71kg to 131kg
         targetWeightSeekBar.setMax(60);
-        currentWeightSeekBar.setProgress(3); // 71 + 3 = 74kg
-        targetWeightSeekBar.setProgress(9); // 71 + 9 = 80kg
 
-        currentWeightText.setText("74.0 kg");
-        targetWeightText.setText("80.0 kg");
+        // Set default progress
+        currentWeightSeekBar.setProgress(3); // 74kg
+        targetWeightSeekBar.setProgress(9);  // 80kg
 
-        // SeekBar listeners
+        // Display initial values
+        currentWeightText.setText((minWeight + currentWeightSeekBar.getProgress()) + ".0 kg");
+        targetWeightText.setText((minWeight + targetWeightSeekBar.getProgress()) + ".0 kg");
+
+        // Listeners
         currentWeightSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int weight = 71 + progress;
-                currentWeightText.setText(weight + ".0 kg");
+                currentWeightText.setText((minWeight + progress) + ".0 kg");
             }
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
@@ -48,25 +53,35 @@ public class Weight extends AppCompatActivity {
 
         targetWeightSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int weight = 71 + progress;
-                targetWeightText.setText(weight + ".0 kg");
+                targetWeightText.setText((minWeight + progress) + ".0 kg");
             }
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        // 🔙 Back Button Functionality
+        // 🔙 Back to HeightActivity
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(Weight.this, HeightActivity.class); // Replace with your actual previous activity
+            Intent intent = new Intent(Weight.this, HeightActivity.class);
             startActivity(intent);
             finish();
         });
 
-        // ▶️ Continue Button Functionality
+        // ▶️ Continue to Complete
         continueButton.setOnClickListener(view -> {
-            int currentWeight = 71 + currentWeightSeekBar.getProgress();
-            int targetWeight = 71 + targetWeightSeekBar.getProgress();
+            int currentWeight = minWeight + currentWeightSeekBar.getProgress();
+            int targetWeight = minWeight + targetWeightSeekBar.getProgress();
 
+            // Save to SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("USER_CURRENT_WEIGHT", currentWeight);
+            editor.putInt("USER_TARGET_WEIGHT", targetWeight);
+            editor.apply();
+
+            // Proceed to Complete
+            Intent intent = new Intent(Weight.this, LifestylePace.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

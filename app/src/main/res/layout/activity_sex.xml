@@ -43,6 +43,7 @@
 
             <!-- Male Option -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/maleCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -74,6 +75,7 @@
 
             <!-- Female Option -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/femaleCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"

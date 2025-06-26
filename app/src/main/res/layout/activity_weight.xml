@@ -99,25 +99,6 @@
                 android:max="60"
                 android:progress="30"/>
 
-            <!-- Gain Weight Card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/gain_weight_card"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Gain Weight\nBuild muscle and strength"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

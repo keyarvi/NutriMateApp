@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 🔽 Background Image -->
+    <!-- Background Image -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:src="@drawable/mainbackground"
         android:contentDescription="@string/app_name" />
 
-    <!-- 🔼 Foreground Content: Scrollable Area -->
+    <!-- Foreground Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,8 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@android:color/transparent">
+                android:orientation="vertical">
 
                 <!-- Title -->
                 <TextView
@@ -57,120 +56,104 @@
                     android:layout_marginBottom="24dp" />
 
                 <!-- Lose Weight -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/loseWeightCard"
+                <LinearLayout
+                    android:id="@+id/btnLoseWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    android:background="@drawable/option_frame_white"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Lose Weight Icon"
+                        android:src="@drawable/waist"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="16dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/waist"
-                            android:contentDescription="Lose Weight Icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lose Weight"
-                            android:textSize="16sp"
-                            android:textColor="#000000"
-                            android:textStyle="bold"
-                            android:layout_marginStart="12dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                        android:layout_marginStart="12dp"
+                        android:text="Lose Weight"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <!-- Gain Muscle -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/gainMuscleCard"
+                <LinearLayout
+                    android:id="@+id/btnGainMuscle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    android:background="@drawable/option_frame_white"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/biceps"
+                        android:contentDescription="Gain Muscle Icon"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="16dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/biceps"
-                            android:contentDescription="Gain Muscle Icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Gain Weight and Muscle"
-                            android:textSize="16sp"
-                            android:textColor="#000000"
-                            android:textStyle="bold"
-                            android:layout_marginStart="12dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                        android:layout_marginStart="12dp"
+                        android:text="Gain Weight and Muscle"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <!-- Maintain Weight -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/maintainWeightCard"
+                <LinearLayout
+                    android:id="@+id/btnMaintainWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    android:background="@drawable/option_frame_white"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/scales"
+                        android:contentDescription="Maintain Weight Icon"
+                        app:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="16dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/scales"
-                            android:contentDescription="Maintain Weight Icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Maintain Weight"
-                            android:textSize="16sp"
-                            android:textColor="#000000"
-                            android:textStyle="bold"
-                            android:layout_marginStart="12dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                        android:layout_marginStart="12dp"
+                        android:text="Maintain Weight"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
 
-        <!-- 🔽 Navigation Buttons at Bottom -->
+        <!-- Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="16dp"
             android:padding="16dp">
 
             <Button

@@ -1,9 +1,11 @@
 package com.example.nutrimateapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,11 +38,21 @@ public class Name extends AppCompatActivity {
             }
         });
 
-        // Button click to go to Birthday activity
+        // 👉 Continue to next screen (e.g., Birthday)
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText userNameEditText = findViewById(R.id.userName);
+                String userName = userNameEditText.getText().toString().trim();
+
+                // Save to SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("USER_NAME", userName);
+                editor.apply();
+
+                // Go to the next screen
                 Intent intent = new Intent(Name.this, Birthday.class);
                 startActivity(intent);
             }
