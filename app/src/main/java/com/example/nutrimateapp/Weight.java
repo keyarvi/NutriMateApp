@@ -57,7 +57,7 @@ public class Weight extends AppCompatActivity {
 
         // 🔙 Back Button Functionality
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(Weight.this, PrimaryGoal.class); // Replace with your actual previous activity
+            Intent intent = new Intent(Weight.this, HeightActivity.class); // Replace with your actual previous activity
             startActivity(intent);
             finish();
         });
@@ -68,7 +68,7 @@ public class Weight extends AppCompatActivity {
             int targetWeight = 71 + targetWeightSeekBar.getProgress();
 
             // Optional: Pass values to next activity
-            Intent intent = new Intent(Weight.this, PrimaryGoal.class); // Replace with your actual next activity
+            Intent intent = new Intent(Weight.this, Lifestyle_Pace.class); // Replace with your actual next activity
             intent.putExtra("currentWeight", currentWeight);
             intent.putExtra("targetWeight", targetWeight);
             startActivity(intent);
