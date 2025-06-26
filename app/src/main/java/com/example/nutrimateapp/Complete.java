@@ -11,13 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Lifestyle_Pace extends AppCompatActivity {
+public class Complete extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_lifestyle_pace);
+        setContentView(R.layout.activity_complete);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -25,26 +25,12 @@ public class Lifestyle_Pace extends AppCompatActivity {
             return insets;
         });
 
-        // 🔙 Back button to Weight activity
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Lifestyle_Pace.this, Weight.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // ▶️ Continue button to HowActiveUr activity
+        // ✅ Continue to Result screen
         Button continueButton = findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Lifestyle_Pace.this, HowActiveUr.class);
-                startActivity(intent);
-                finish();
-            }
+        continueButton.setOnClickListener(view -> {
+            Intent intent = new Intent(Complete.this, Result.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
