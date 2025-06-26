@@ -326,6 +326,19 @@
             android:layout_marginTop="4dp"/>
     </LinearLayout>
 
+    <!-- Display Actual Meals -->
+    <LinearLayout
+        android:id="@+id/mealContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/placeholderNoMeals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <!-- Add Meal Button -->
     <Button
         android:id="@+id/btnAddMeal"

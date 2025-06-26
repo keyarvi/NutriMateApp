@@ -2,6 +2,7 @@ package com.example.nutrimateapp;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,6 +22,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.IOException;
 
 public class LogMeals extends AppCompatActivity {
 
@@ -46,7 +49,7 @@ public class LogMeals extends AppCompatActivity {
         btnAddMeal = findViewById(R.id.btnAddMeal);
         fabCamera = findViewById(R.id.fabCamera);
 
-        // Example: Retrieve user name passed from Name.java
+        // Retrieve username from intent
         String userName = getIntent().getStringExtra("USER_NAME");
         if (userName != null && !userName.isEmpty()) {
             tvUsername.setText("Hello, " + userName + "!");
@@ -95,13 +98,49 @@ public class LogMeals extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE && data != null) {
-                // Handle camera photo here (e.g., data.getExtras().get("data"))
-                Uri imageUri = data.getData();
-                // TODO: Pass imageUri to your food recognition logic
+                Bundle extras = data.getExtras();
+                Bitmap photo = (Bitmap) extras.get("data");
+
+                // Simulate image recognition and display
+                displayDetectedMeal(photo, "Grilled Chicken with Rice", 550, 40, 45, 20);
             } else if (requestCode == REQUEST_IMAGE_PICK && data != null) {
                 Uri selectedImage = data.getData();
-                // TODO: Pass selectedImage to your food recognition logic
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+
+                    // Simulate image recognition and display
+                    displayDetectedMeal(bitmap, "Spaghetti Bolognese", 620, 35, 70, 18);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
+    }
+
+    private void displayDetectedMeal(Bitmap mealImage, String mealName, int calories, int protein, int carbs, int fats) {
+        LinearLayout placeholder = findViewById(R.id.placeholderNoMeals);
+        LinearLayout container = findViewById(R.id.mealContainer);
+
+        // Hide the "No Meals" placeholder and show container
+        placeholder.setVisibility(View.GONE);
+        container.setVisibility(View.VISIBLE);
+
+        // Inflate a new meal card layout
+        View mealCard = LayoutInflater.from(this).inflate(R.layout.item_meal_entry, container, false);
+
+        ImageView imgMeal = mealCard.findViewById(R.id.imgMeal);
+        TextView tvMealName = mealCard.findViewById(R.id.tvMealName);
+        TextView tvMealNutrition = mealCard.findViewById(R.id.tvMealNutrition);
+
+        imgMeal.setImageBitmap(mealImage);
+        tvMealName.setText(mealName);
+        tvMealNutrition.setText(
+                calories + " cal  |  " +
+                        protein + "g Protein  |  " +
+                        carbs + "g Carbs  |  " +
+                        fats + "g Fats"
+        );
+
+        container.addView(mealCard);
     }
 }
