@@ -5,6 +5,37 @@
     android:background="@drawable/mainbackground"
     android:padding="17dp">
 
+    <!-- 🔽 Bottom Navigation Buttons -->
+    <LinearLayout
+        android:id="@+id/bottomButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#EAEAED"
+            android:text="Back"
+            android:textColor="#050505"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#057EDB"
+            android:text="Continue"
+            android:textColor="#FFFFFF"
+            android:gravity="center" />
+    </LinearLayout>
+
     <!-- 🔼 Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
@@ -42,13 +73,16 @@
 
             <!-- Sedentary -->
             <LinearLayout
+                android:id="@+id/option_sedentary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:padding="18dp"
                 android:orientation="horizontal"
                 android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -81,13 +115,16 @@
 
             <!-- Lightly Active -->
             <LinearLayout
+                android:id="@+id/option_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:padding="18dp"
                 android:orientation="horizontal"
                 android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -120,13 +157,16 @@
 
             <!-- Moderately Active -->
             <LinearLayout
+                android:id="@+id/option_moderate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:padding="18dp"
                 android:orientation="horizontal"
                 android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -159,13 +199,16 @@
 
             <!-- Very Active -->
             <LinearLayout
+                android:id="@+id/option_very"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:padding="18dp"
                 android:orientation="horizontal"
                 android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -198,13 +241,16 @@
 
             <!-- Super Active -->
             <LinearLayout
+                android:id="@+id/option_super"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:padding="18dp"
                 android:orientation="horizontal"
                 android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -234,39 +280,6 @@
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
-    <!-- 🔽 Bottom Navigation Buttons (uniform) -->
-    <LinearLayout
-        android:id="@+id/bottomButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#EAEAED"
-            android:text="Back"
-            android:textColor="#050505"
-            android:gravity="center" />
-
-        <Button
-            android:id="@+id/continue_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#057EDB"
-            android:text="Continue"
-            android:textColor="#FFFFFF"
-            android:gravity="center" />
-    </LinearLayout>
-
 </RelativeLayout>
