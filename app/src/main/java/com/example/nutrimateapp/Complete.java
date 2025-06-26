@@ -11,13 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Name extends AppCompatActivity {
+public class Complete extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_name);
+        setContentView(R.layout.activity_complete);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -25,25 +25,12 @@ public class Name extends AppCompatActivity {
             return insets;
         });
 
-        // 🔙 Back to Personalize
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Name.this, Personalize.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // Button click to go to Birthday activity
+        // ✅ Continue to Result screen
         Button continueButton = findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Name.this, Birthday.class);
-                startActivity(intent);
-            }
+        continueButton.setOnClickListener(view -> {
+            Intent intent = new Intent(Complete.this, Result.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
