@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hello, User!"
                 android:textColor="@android:color/white"
+                android:layout_marginTop="5dp"
                 android:textSize="16sp"
                 android:layout_marginEnd="8dp"/>
 
@@ -53,7 +54,6 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_profile"
-                android:tint="@android:color/white"
                 android:contentDescription="Profile Icon"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -65,17 +65,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/btnPrevMonth"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_left"
-            android:tint="#333"/>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrow_left" />
 
         <TextView
             android:id="@+id/tvMonth"
@@ -89,10 +88,9 @@
 
         <ImageView
             android:id="@+id/btnNextMonth"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_right"
-            android:tint="#333"/>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrow_right" />
     </LinearLayout>
 
     <!-- Week Days Placeholder -->
@@ -132,7 +130,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Calories"
-                android:textColor="#1976D2"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="8dp"/>
@@ -304,10 +301,10 @@
 
         <ImageView
             android:id="@+id/imgFoodPlaceholder"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/ic_food"
-            android:tint="#BDBDBD"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -334,11 +331,11 @@
         android:id="@+id/btnAddMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#057EDB"
         android:text="Add a Meal"
-        app:layout_constraintTop_toBottomOf="@id/placeholderNoMeals"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/placeholderNoMeals" />
 
     <!-- Footer Background -->
     <View
@@ -353,12 +350,12 @@
         android:id="@+id/fabCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_camera"
-        android:tint="@android:color/white"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="#1976D2"
+        android:src="@drawable/ic_camera"
+        app:backgroundTint="#024290"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
