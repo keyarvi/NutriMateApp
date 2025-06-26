@@ -25,14 +25,6 @@ public class Personalize extends AppCompatActivity {
             return insets;
         });
 
-        // 🔙 Back to HealthDisclaimer
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(Personalize.this, HealthDisclaimer.class);
-            startActivity(intent);
-            finish();
-        });
-
         // ▶️ Continue to Name
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(view -> {

@@ -25,6 +25,17 @@ public class Name extends AppCompatActivity {
             return insets;
         });
 
+        // 🔙 Back to Personalize
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Name.this, Personalize.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         // Button click to go to Birthday activity
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
