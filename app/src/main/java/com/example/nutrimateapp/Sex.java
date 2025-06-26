@@ -32,7 +32,18 @@ public class Sex extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Sex.this, Birthday.class);
                 startActivity(intent);
-                finish(); // Optional to avoid stacking activities
+                finish();
+            }
+        });
+
+        // Continue button to go to PrimaryGoal activity
+        Button continueButton = findViewById(R.id.continueButton);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Sex.this, PrimaryGoal.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

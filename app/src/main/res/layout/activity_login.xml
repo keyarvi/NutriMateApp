@@ -81,11 +81,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/forgot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginBottom="24dp"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
                 <CheckBox
@@ -97,15 +98,19 @@
                     android:textSize="14sp" />
 
                 <TextView
+<<<<<<< HEAD
                     android:id="@+id/forgotPasswordText"
+=======
+                    android:id="@+id/forgot"
+>>>>>>> 076ecd53f547c1499594a8740c5834eedb22a1a4
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="end"
                     android:text="Forgot Password?"
-                    android:textSize="14sp"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <Button

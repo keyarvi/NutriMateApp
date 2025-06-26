@@ -13,6 +13,7 @@
         android:theme="@style/Theme.NutriMateApp"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
@@ -20,6 +21,12 @@
             android:exported="false" />
         <activity
             android:name=".Login"
+=======
+            android:name=".Result"
+            android:exported="false" />
+        <activity
+            android:name=".LogMeals"
+>>>>>>> 076ecd53f547c1499594a8740c5834eedb22a1a4
             android:exported="false" /> <!-- Launch/Entry Activities -->
         <activity
             android:name=".LGS"
