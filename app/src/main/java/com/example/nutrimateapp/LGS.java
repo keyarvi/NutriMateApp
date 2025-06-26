@@ -19,20 +19,20 @@ public class LGS extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lgs);
 
-        // Apply insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Button to go to HealthDisclaimer activity
-        Button getStartedButton = findViewById(R.id.btnGetStarted);
-        getStartedButton.setOnClickListener(new View.OnClickListener() {
+        // ▶️ "Let's Get Started" → Go to Personalize.java (or your next screen)
+        Button getStartedBtn = findViewById(R.id.btnGetStarted);
+        getStartedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LGS.this, HealthDisclaimer.class);
+                Intent intent = new Intent(LGS.this, HealthDisclaimer.class); // or whatever your next activity is
                 startActivity(intent);
+                finish();
             }
         });
     }
