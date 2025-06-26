@@ -12,20 +12,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NutriMateApp"
         tools:targetApi="31">
-
-        <!-- Launch/Entry Activities -->
-        <activity android:name=".LGS" android:exported="false" />
-        <activity android:name=".HealthDisclaimer" android:exported="false" />
-        <activity android:name=".Personalize" android:exported="false" />
-
-
-        <!-- Personalization Flow -->
-        <activity android:name=".Name" android:exported="false" />
-        <activity android:name=".how_active_ur" android:exported="false" />
-        <activity android:name=".HeightActivity" android:exported="false" />
-        <activity android:name=".Weight" android:exported="false" />
-        <activity android:name=".PrimaryGoal" android:exported="false" />
-
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Signup"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" /> <!-- Launch/Entry Activities -->
+        <activity
+            android:name=".LGS"
+            android:exported="false" />
+        <activity
+            android:name=".HealthDisclaimer"
+            android:exported="false" />
+        <activity
+            android:name=".Personalize"
+            android:exported="false" /> <!-- Personalization Flow -->
+        <activity
+            android:name=".Name"
+            android:exported="false" />
+        <activity
+            android:name=".how_active_ur"
+            android:exported="false" />
+        <activity
+            android:name=".HeightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Weight"
+            android:exported="false" />
+        <activity
+            android:name=".PrimaryGoal"
+            android:exported="false" />
     </application>
 
 </manifest>
