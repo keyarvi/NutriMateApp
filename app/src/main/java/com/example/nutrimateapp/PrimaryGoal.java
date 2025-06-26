@@ -19,9 +19,6 @@ public class PrimaryGoal extends AppCompatActivity {
         setContentView(R.layout.activity_primary_goal); // ✅ Match the layout file name
 
         // Initialize buttons
-        loseWeightBtn = findViewById(R.id.loseWeightBtn);
-        gainMuscleBtn = findViewById(R.id.gainMuscleBtn);
-        maintainWeightBtn = findViewById(R.id.maintainWeightBtn);
         backButton = findViewById(R.id.backButton);
         continueButton = findViewById(R.id.continueButton);
 

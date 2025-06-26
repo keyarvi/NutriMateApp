@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nutrimateapp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
@@ -12,46 +13,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NutriMateApp"
         tools:targetApi="31">
-        <activity
-<<<<<<< HEAD
-            android:name=".ForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".Signup"
-            android:exported="false" />
+
+        <!-- Launcher -->
         <activity
             android:name=".Login"
-=======
-            android:name=".Result"
-            android:exported="false" />
-        <activity
-            android:name=".LogMeals"
->>>>>>> 076ecd53f547c1499594a8740c5834eedb22a1a4
-            android:exported="false" /> <!-- Launch/Entry Activities -->
-        <activity
-            android:name=".LGS"
-            android:exported="false" />
-        <activity
-            android:name=".HealthDisclaimer"
-            android:exported="false" />
-        <activity
-            android:name=".Personalize"
-            android:exported="false" /> <!-- Personalization Flow -->
-        <activity
-            android:name=".Name"
-            android:exported="false" />
-        <activity
-            android:name=".how_active_ur"
-            android:exported="false" />
-        <activity
-            android:name=".HeightActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Weight"
-            android:exported="false" />
-        <activity
-            android:name=".PrimaryGoal"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- All Screens -->
+        <activity android:name=".Signup" android:exported="false" />
+        <activity android:name=".ForgotPassword" android:exported="false" />
+        <activity android:name=".MainActivity" android:exported="false" />
+        <activity android:name=".Complete" android:exported="false" />
+        <activity android:name=".Result" android:exported="false" />
+        <activity android:name=".LogMeals" android:exported="false" />
+        <activity android:name=".LGS" android:exported="false" />
+        <activity android:name=".HealthDisclaimer" android:exported="false" />
+        <activity android:name=".Personalize" android:exported="false" />
+        <activity android:name=".Name" android:exported="false" />
+        <activity android:name=".HowActiveAreYou" android:exported="false" />
+        <activity android:name=".HeightActivity" android:exported="false" />
+        <activity android:name=".Weight" android:exported="false" />
+        <activity android:name=".PrimaryGoal" android:exported="false" />
+        <activity android:name=".Sex" android:exported="false" />
+        <activity android:name=".Birthday" android:exported="false" />
+        <activity android:name=".LifestylePace" android:exported="false" />
+
     </application>
 
 </manifest>

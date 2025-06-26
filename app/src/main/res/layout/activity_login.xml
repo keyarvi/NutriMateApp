@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainbackground">
 
+    <!-- Logo Section -->
     <LinearLayout
         android:id="@+id/logoSection"
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
             android:contentDescription="Nutrimate Logo" />
     </LinearLayout>
 
+    <!-- Login Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/loginCard"
         android:layout_width="match_parent"
@@ -37,6 +39,7 @@
             android:orientation="vertical"
             android:padding="24dp">
 
+            <!-- Email Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,8 +49,7 @@
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
-                app:boxCornerRadiusBottomEnd="25dp"
-                app:startIconDrawableCompat="@drawable/ic_email">
+                app:boxCornerRadiusBottomEnd="25dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
@@ -58,6 +60,7 @@
                     android:background="@android:color/transparent" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Password Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,9 +70,7 @@
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
-                app:boxCornerRadiusBottomEnd="25dp"
-                app:startIconDrawableCompat="@drawable/ic_lock"
-                app:endIconMode="password_toggle">
+                app:boxCornerRadiusBottomEnd="25dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"
@@ -80,8 +81,9 @@
                     android:background="@android:color/transparent" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Forgot Password and Remember Me -->
             <LinearLayout
-                android:id="@+id/forgot"
+                android:id="@+id/forgotSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
@@ -98,11 +100,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-<<<<<<< HEAD
                     android:id="@+id/forgotPasswordText"
-=======
-                    android:id="@+id/forgot"
->>>>>>> 076ecd53f547c1499594a8740c5834eedb22a1a4
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -113,6 +111,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
+            <!-- Login Button -->
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
@@ -124,6 +123,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <!-- Create Account Prompt -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
