@@ -49,8 +49,7 @@
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
-                app:boxCornerRadiusBottomEnd="25dp"
-                app:startIconDrawableCompat="@drawable/ic_email">
+                app:boxCornerRadiusBottomEnd="25dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
@@ -71,9 +70,7 @@
                 app:boxCornerRadiusTopStart="25dp"
                 app:boxCornerRadiusTopEnd="25dp"
                 app:boxCornerRadiusBottomStart="25dp"
-                app:boxCornerRadiusBottomEnd="25dp"
-                app:startIconDrawableCompat="@drawable/ic_lock"
-                app:endIconMode="password_toggle">
+                app:boxCornerRadiusBottomEnd="25dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"

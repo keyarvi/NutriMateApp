@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main); // Make sure this XML exists
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(MainActivity.this, HealthDisclaimer.class));
             finish(); // Prevent going back to splash screen
         }, SPLASH_DELAY);
     }

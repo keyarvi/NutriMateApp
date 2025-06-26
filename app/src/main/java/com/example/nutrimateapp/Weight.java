@@ -67,12 +67,6 @@ public class Weight extends AppCompatActivity {
             int currentWeight = 71 + currentWeightSeekBar.getProgress();
             int targetWeight = 71 + targetWeightSeekBar.getProgress();
 
-            // Optional: Pass values to next activity
-            Intent intent = new Intent(Weight.this, Lifestyle_Pace.class); // Replace with your actual next activity
-            intent.putExtra("currentWeight", currentWeight);
-            intent.putExtra("targetWeight", targetWeight);
-            startActivity(intent);
-            finish();
         });
     }
 }
