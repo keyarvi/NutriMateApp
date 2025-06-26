@@ -2,48 +2,64 @@ package com.example.nutrimateapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class Login extends AppCompatActivity {
 
-    EditText emailEditText, passwordEditText;
+    TextInputEditText emailEditText, passwordEditText;
     Button loginButton;
+    TextView createAccountText, forgotPasswordText;
     CheckBox rememberMeCheckBox;
-    TextView forgotPasswordText, createAccountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login); // 🛠 Make sure your file is activity_login.xml
 
+        // Initialize views
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
-        rememberMeCheckBox = findViewById(R.id.checkBox);
-        forgotPasswordText = findViewById(R.id.forgotPasswordText);
         createAccountText = findViewById(R.id.createAccountText);
+        forgotPasswordText = findViewById(R.id.forgotPasswordText);
+        rememberMeCheckBox = findViewById(R.id.checkBox);
 
+        // Login button click
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-            } else if (email.equals("user@example.com") && password.equals("password123")) {
-                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Login.this, MainActivity.class));
-                finish();
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                boolean remember = rememberMeCheckBox.isChecked();
+                // Optional: store preference if rememberMe
+                Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login.this, MainActivity.class)); // ✔ Replace with your main screen
+                finish();
             }
         });
 
-        forgotPasswordText.setOnClickListener(v ->
-                startActivity(new Intent(this, ForgotPassword.class)));
+        // Go to Sign Up
+        createAccountText.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, Signup.class);
+            startActivity(intent);
+        });
 
-        createAccountText.setOnClickListener(v ->
-                startActivity(new Intent(this, Signup.class)));
+        // Go to Forgot Password
+        forgotPasswordText.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, ForgotPassword.class);
+            startActivity(intent);
+        });
     }
 }

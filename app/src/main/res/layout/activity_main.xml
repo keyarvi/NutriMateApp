@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splashScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/splashLogo"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:src="@drawable/logo1"
+        android:contentDescription="Nutrimate Logo"
+        android:layout_centerInParent="true" />
+</RelativeLayout>
