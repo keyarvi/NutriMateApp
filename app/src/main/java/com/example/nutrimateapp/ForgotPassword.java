@@ -2,7 +2,6 @@ package com.example.nutrimateapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -88,6 +87,5 @@ public class ForgotPassword extends AppCompatActivity {
                 finish();
             }
         });
->>>>>>> 076ecd53f547c1499594a8740c5834eedb22a1a4
     }
 }
