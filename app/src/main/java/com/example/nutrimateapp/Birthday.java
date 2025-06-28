@@ -14,6 +14,7 @@ import android.widget.NumberPicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -27,6 +28,10 @@ public class Birthday extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Prevent dark mode from messing with colors
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_birthday);
 
@@ -37,9 +42,9 @@ public class Birthday extends AppCompatActivity {
         });
 
         datePicker = findViewById(R.id.datePicker);
-        setDatePickerWhite(datePicker); // ✅ Apply white color to text and dividers
+        setDatePickerWhite(datePicker); // ✅ White text and dividers (safe)
 
-        // 🔙 Back button to go to Name activity
+        // Back button
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(Birthday.this, Name.class);
@@ -47,16 +52,15 @@ public class Birthday extends AppCompatActivity {
             finish();
         });
 
-        // 👉 Continue button to go to Sex activity
+        // Continue button
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(view -> {
             int day = datePicker.getDayOfMonth();
-            int month = datePicker.getMonth() + 1; // Month is 0-based
+            int month = datePicker.getMonth() + 1;
             int year = datePicker.getYear();
 
             String birthDate = year + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
 
-            // Save to SharedPreferences
             SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
             prefs.edit().putString("USER_BIRTHDAY", birthDate).apply();
 
@@ -65,35 +69,42 @@ public class Birthday extends AppCompatActivity {
         });
     }
 
-    // ✅ Method to make spinner text and lines white
+    // ✅ Safe way to make spinner text & dividers white
     private void setDatePickerWhite(DatePicker datePicker) {
-        try {
-            LinearLayout layout1 = (LinearLayout) datePicker.getChildAt(0);
-            LinearLayout layout2 = (LinearLayout) layout1.getChildAt(0);
+        datePicker.post(() -> {
+            try {
+                LinearLayout layout1 = (LinearLayout) datePicker.getChildAt(0);
+                LinearLayout layout2 = (LinearLayout) layout1.getChildAt(0);
 
-            for (int i = 0; i < layout2.getChildCount(); i++) {
-                NumberPicker picker = (NumberPicker) layout2.getChildAt(i);
+                for (int i = 0; i < layout2.getChildCount(); i++) {
+                    View child = layout2.getChildAt(i);
+                    if (child instanceof NumberPicker) {
+                        NumberPicker picker = (NumberPicker) child;
 
-                // Change spinner text color
-                for (int j = 0; j < picker.getChildCount(); j++) {
-                    View child = picker.getChildAt(j);
-                    if (child instanceof EditText) {
-                        ((EditText) child).setTextColor(Color.WHITE);
+                        // Set white text
+                        for (int j = 0; j < picker.getChildCount(); j++) {
+                            View pickerChild = picker.getChildAt(j);
+                            if (pickerChild instanceof EditText) {
+                                ((EditText) pickerChild).setTextColor(Color.WHITE);
+                            }
+                        }
+
+                        // Set white divider line
+                        Field[] fields = NumberPicker.class.getDeclaredFields();
+                        for (Field field : fields) {
+                            if (field.getName().equals("mSelectionDivider")) {
+                                field.setAccessible(true);
+                                field.set(picker, new ColorDrawable(Color.WHITE));
+                                break;
+                            }
+                        }
+
+                        picker.invalidate(); // Refresh
                     }
                 }
-
-                // Change divider line color via reflection
-                Field[] fields = NumberPicker.class.getDeclaredFields();
-                for (Field field : fields) {
-                    if (field.getName().equals("mSelectionDivider")) {
-                        field.setAccessible(true);
-                        field.set(picker, new ColorDrawable(Color.WHITE));
-                        break;
-                    }
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }
