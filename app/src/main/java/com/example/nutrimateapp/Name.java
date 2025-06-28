@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,47 +16,52 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Name extends AppCompatActivity {
 
+    private EditText userNameEditText;
+    private Button backButton, continueButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_name);
 
+        // Handle system bars (for fullscreen layout)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // 🔙 Back to Personalize
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Name.this, Personalize.class);
-                startActivity(intent);
-                finish();
-            }
+        // Initialize views
+        userNameEditText = findViewById(R.id.userName);
+        backButton = findViewById(R.id.backButton);
+        continueButton = findViewById(R.id.continueButton);
+
+        // 🔙 Go back to Personalize screen
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(Name.this, Personalize.class);
+            startActivity(intent);
+            finish(); // optional: remove this if you want to keep history
         });
 
-        // 👉 Continue to next screen (e.g., Birthday)
-        Button continueButton = findViewById(R.id.continueButton);
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText userNameEditText = findViewById(R.id.userName);
-                String userName = userNameEditText.getText().toString().trim();
+        // 👉 Continue to Birthday screen
+        continueButton.setOnClickListener(view -> {
+            String userName = userNameEditText.getText().toString().trim();
 
-                // Save to SharedPreferences
-                SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("USER_NAME", userName);
-                editor.apply();
-
-                // Go to the next screen
-                Intent intent = new Intent(Name.this, Birthday.class);
-                startActivity(intent);
+            if (userName.isEmpty()) {
+                Toast.makeText(Name.this, "Please enter your name", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Save name in SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("USER_NAME", userName);
+            editor.apply();
+
+            // Navigate to Birthday screen
+            Intent intent = new Intent(Name.this, Birthday.class);
+            startActivity(intent);
         });
     }
 }
