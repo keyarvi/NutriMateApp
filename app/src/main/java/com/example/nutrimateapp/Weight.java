@@ -14,7 +14,8 @@ public class Weight extends AppCompatActivity {
     private SeekBar currentWeightSeekBar, targetWeightSeekBar;
     private Button backButton, continueButton;
 
-    private final int minWeight = 1;
+    private final int minWeight = 30;
+    private final int maxWeight = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,14 @@ public class Weight extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         continueButton = findViewById(R.id.continueButton);
 
-        currentWeightSeekBar.setMax(130); // 1–131kg
-        targetWeightSeekBar.setMax(130);
+        int range = maxWeight - minWeight; // 270
 
-        currentWeightSeekBar.setProgress(73); // 74kg
-        targetWeightSeekBar.setProgress(79);  // 80kg
+        currentWeightSeekBar.setMax(range);
+        targetWeightSeekBar.setMax(range);
+
+        // Default values: 74kg and 80kg
+        currentWeightSeekBar.setProgress(74 - minWeight); // 44
+        targetWeightSeekBar.setProgress(80 - minWeight);  // 50
 
         currentWeightText.setText((minWeight + currentWeightSeekBar.getProgress()) + ".0 kg");
         targetWeightText.setText((minWeight + targetWeightSeekBar.getProgress()) + ".0 kg");
