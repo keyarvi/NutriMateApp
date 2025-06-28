@@ -167,6 +167,7 @@ public class Complete extends AppCompatActivity {
         continueButton.setOnClickListener(v -> {
             Intent intent = new Intent(Complete.this, LogMeals.class);
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);  // continue animation
             finish();
         });
     }

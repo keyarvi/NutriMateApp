@@ -1,88 +1,120 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/birthday"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/mainbackground">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mainbackground"
+        android:contentDescription="@string/app_name" />
 
+    <!-- Foreground Content -->
+    <LinearLayout
+        android:id="@+id/birthday"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Scrollable Section -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="When is your birthday?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/subtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Knowing your age helps us tailor your plan to fit your metabolic needs."
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Number Pickers -->
+                <LinearLayout
+                    android:layout_width="326dp"
+                    android:layout_height="263dp"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <NumberPicker
+                        android:id="@+id/monthPicker"
+                        android:layout_width="90dp"
+                        android:layout_height="218dp"
+                        android:layout_marginEnd="16dp"
+                        android:theme="@style/SpinnerTheme" />
+
+                    <NumberPicker
+                        android:id="@+id/dayPicker"
+                        android:layout_width="90dp"
+                        android:layout_height="218dp"
+                        android:layout_marginEnd="16dp"
+                        android:theme="@style/SpinnerTheme" />
+
+                    <NumberPicker
+                        android:id="@+id/yearPicker"
+                        android:layout_width="90dp"
+                        android:layout_height="218dp"
+                        android:theme="@style/SpinnerTheme" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="17dp"
-            android:gravity="center_horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/birthdayText"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="16dp"
-                android:text="When is your birthday?"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:backgroundTint="#EAEAED"
+                android:text="Back"
+                android:textColor="#050505" />
 
-            <TextView
-                android:id="@+id/subBirthText"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/continueButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="Knowing your age helps us tailor your plan to fit your metabolic needs."
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <DatePicker
-                android:id="@+id/datePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:spinnersShown="true"
-                android:scaleX="1.3"
-                android:scaleY="1.3"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="24dp"
-                android:background="@android:color/transparent" />
-
-
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#057EDB"
+                android:text="Continue"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
-
-    <!-- Bottom Buttons -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#EAEAED"
-            android:text="Back"
-            android:textColor="#050505" />
-
-        <Button
-            android:id="@+id/continueButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="#057EDB"
-            android:text="Continue"
-            android:textColor="#FFFFFF" />
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

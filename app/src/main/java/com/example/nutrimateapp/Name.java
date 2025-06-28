@@ -38,13 +38,14 @@ public class Name extends AppCompatActivity {
         continueButton = findViewById(R.id.continueButton);
 
         // 🔄 Clear the field on first click
-        userNameEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        userNameEditText.setText("Name"); // optional
+
+        userNameEditText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus && userNameEditText.getText().toString().equals("Name")) {
                 userNameEditText.setText("");
-                userNameEditText.setOnClickListener(null); // remove listener after first tap
             }
         });
+
 
         // 🔙 Back button: go to Personalize screen
         backButton.setOnClickListener(view -> {

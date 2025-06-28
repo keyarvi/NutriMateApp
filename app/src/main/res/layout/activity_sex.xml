@@ -1,142 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/mainbackground"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mainbackground"
+        android:contentDescription="@string/app_name" />
 
+    <!-- Foreground Content -->
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Scrollable Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What is your biological sex?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/subtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Knowing your biological sex allows us to personalize your Basal Metabolic Rate (BMR) and daily calorie recommendations"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Male Option -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/maleCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="27dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/male" />
+
+                        <TextView
+                            android:id="@+id/maleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:layout_marginStart="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Female Option -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/femaleCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/woman" />
+
+                        <TextView
+                            android:id="@+id/femaleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:layout_marginStart="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
 
-            <!-- Title -->
-            <TextView
-                android:text="What is your biological sex?"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <!-- Subtitle -->
-            <TextView
-                android:text="Knowing your biological sex allows us to personalize your Basal Metabolic Rate (BMR) and daily calorie recommendations"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:layout_marginBottom="24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <!-- Male Option -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/maleCard"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                android:background="@drawable/sex_card_selector">
+                android:layout_weight="1"
+                android:backgroundTint="#EAEAED"
+                android:text="Back"
+                android:textColor="#050505" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/male" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Male"
-                        android:textSize="16sp"
-                        android:textColor="#000000"
-                        android:textStyle="bold"
-                        android:layout_marginStart="12dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Female Option -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/femaleCard"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/continueButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                android:background="@drawable/sex_card_selector">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/woman" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Female"
-                        android:textSize="16sp"
-                        android:textColor="#000000"
-                        android:textStyle="bold"
-                        android:layout_marginStart="12dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#057EDB"
+                android:text="Continue"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
-
-    <!-- Navigation Buttons at Bottom -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#EAEAED"
-            android:text="Back"
-            android:textColor="#050505" />
-
-        <Button
-            android:id="@+id/continueButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="#057EDB"
-            android:text="Continue"
-            android:textColor="#FFFFFF" />
     </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>

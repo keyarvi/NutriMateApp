@@ -32,6 +32,7 @@ public class LGS extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LGS.this, HealthDisclaimer.class); // or whatever your next activity is
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);  // continue animation
                 finish();
             }
         });

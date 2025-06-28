@@ -1,118 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/mainbackground">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mainbackground"
+        android:contentDescription="@string/app_name" />
 
+    <!-- Foreground Content -->
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Scrollable Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Let's personalize your progress"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your starting point and goals are key to building a plan that fits your nutritional needs."
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Current Weight -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Weight"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/currentWeightText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="74.0 kg"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="4dp" />
+
+                <SeekBar
+                    android:id="@+id/currentWeightSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progressDrawable="@drawable/seekbar_white"
+                    android:thumb="@drawable/seekbar_thumb_white" />
+
+                <!-- Target Weight -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Target Weight"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/targetWeightText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80.0 kg"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="4dp" />
+
+                <SeekBar
+                    android:id="@+id/targetWeightSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progressDrawable="@drawable/seekbar_white"
+                    android:thumb="@drawable/seekbar_thumb_white" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:orientation="horizontal"
+            android:padding="18dp"
+            android:gravity="center">
 
-            <TextView
-                android:text="Let's personalize your progress"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Your starting point and goals are key to building a plan that fits your nutritional needs."
-                android:textSize="14sp"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:layout_marginBottom="24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Current Weight"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/currentWeightText"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="74.0 kg"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#EAEAED"
+                android:text="Back"
+                android:textColor="#050505" />
 
-            <SeekBar
-                android:id="@+id/currentWeightSeekBar"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/continueButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/seekbar_white"
-                android:thumb="@drawable/seekbar_thumb_white" />
-
-            <TextView
-                android:text="Target Weight"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/targetWeightText"
-                android:text="80.0 kg"
-                android:textSize="24sp"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <SeekBar
-                android:id="@+id/targetWeightSeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/seekbar_white"
-                android:thumb="@drawable/seekbar_thumb_white" />
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#057EDB"
+                android:text="Continue"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#050505"
-            android:text="Back"
-            android:backgroundTint="#EAEAED"/>
-
-        <Button
-            android:id="@+id/continueButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Continue"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#057EDB"
-            android:textColor="#FFFFFF"/>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

@@ -2,9 +2,12 @@ package com.example.nutrimateapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,34 +23,29 @@ public class PrimaryGoal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primary_goal);
 
-        // Match the XML IDs (which are LinearLayouts)
         btnLoseWeight = findViewById(R.id.btnLoseWeight);
         btnGainMuscle = findViewById(R.id.btnGainMuscle);
         btnMaintainWeight = findViewById(R.id.btnMaintainWeight);
-
         backButton = findViewById(R.id.backButton);
         continueButton = findViewById(R.id.continueButton);
 
         // Selection logic
         btnLoseWeight.setOnClickListener(v -> {
             resetSelection();
-            btnLoseWeight.setBackgroundResource(R.drawable.option_frame_blue);
+            highlightSelection(btnLoseWeight);
             selectedGoal = "Lose Weight";
-            Toast.makeText(this, "Selected: " + selectedGoal, Toast.LENGTH_SHORT).show();
         });
 
         btnGainMuscle.setOnClickListener(v -> {
             resetSelection();
-            btnGainMuscle.setBackgroundResource(R.drawable.option_frame_blue);
+            highlightSelection(btnGainMuscle);
             selectedGoal = "Gain Weight and Muscle";
-            Toast.makeText(this, "Selected: " + selectedGoal, Toast.LENGTH_SHORT).show();
         });
 
         btnMaintainWeight.setOnClickListener(v -> {
             resetSelection();
-            btnMaintainWeight.setBackgroundResource(R.drawable.option_frame_blue);
+            highlightSelection(btnMaintainWeight);
             selectedGoal = "Maintain Weight";
-            Toast.makeText(this, "Selected: " + selectedGoal, Toast.LENGTH_SHORT).show();
         });
 
         backButton.setOnClickListener(v -> {
@@ -71,8 +69,26 @@ public class PrimaryGoal extends AppCompatActivity {
     }
 
     private void resetSelection() {
-        btnLoseWeight.setBackgroundResource(R.drawable.option_frame_white);
-        btnGainMuscle.setBackgroundResource(R.drawable.option_frame_white);
-        btnMaintainWeight.setBackgroundResource(R.drawable.option_frame_white);
+        resetColor(btnLoseWeight);
+        resetColor(btnGainMuscle);
+        resetColor(btnMaintainWeight);
+        btnLoseWeight.setBackgroundResource(R.drawable.option_bg);
+        btnGainMuscle.setBackgroundResource(R.drawable.option_bg);
+        btnMaintainWeight.setBackgroundResource(R.drawable.option_bg);
+    }
+
+    private void highlightSelection(LinearLayout layout) {
+        layout.setBackgroundResource(R.drawable.option_frame_blue);
+        ImageView icon = (ImageView) layout.getChildAt(0);
+        TextView label = (TextView) layout.getChildAt(1);
+        icon.setColorFilter(Color.WHITE);
+        label.setTextColor(Color.WHITE);
+    }
+
+    private void resetColor(LinearLayout layout) {
+        ImageView icon = (ImageView) layout.getChildAt(0);
+        TextView label = (TextView) layout.getChildAt(1);
+        icon.setColorFilter(Color.BLACK);
+        label.setTextColor(Color.BLACK);
     }
 }

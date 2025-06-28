@@ -33,22 +33,33 @@ public class HeightActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
         Button continueButton = findViewById(R.id.continueButton);
 
-        populateHeightList();
+        populateHeightTicks();
         heightScroll.post(() -> scrollToHeight(selectedHeight));
 
         heightScroll.getViewTreeObserver().addOnScrollChangedListener(() -> {
-            int scrollY = heightScroll.getScrollY();
-            int itemHeight = heightContainer.getChildAt(0).getHeight();
-            int centerIndex = (scrollY + heightScroll.getHeight() / 2) / itemHeight;
+            int centerY = heightScroll.getScrollY() + heightScroll.getHeight() / 2;
 
-            if (centerIndex >= 0 && centerIndex < heightContainer.getChildCount()) {
-                updateSelection(centerIndex + minHeight);
+            // Find the tick that is closest to the centerY
+            int closestIndex = 0;
+            int smallestDistance = Integer.MAX_VALUE;
+
+            for (int i = 0; i < heightContainer.getChildCount(); i++) {
+                View tickItem = heightContainer.getChildAt(i);
+                int itemCenter = tickItem.getTop() + tickItem.getHeight() / 2;
+                int distance = Math.abs(itemCenter - centerY);
+                if (distance < smallestDistance) {
+                    smallestDistance = distance;
+                    closestIndex = i;
+                }
+            }
+
+            if (closestIndex >= 0 && closestIndex < heightContainer.getChildCount()) {
+                updateSelection(minHeight + closestIndex);
             }
         });
 
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HeightActivity.this, Weight.class);
-            startActivity(intent);
+            startActivity(new Intent(HeightActivity.this, PrimaryGoal.class));
             finish();
         });
 
@@ -56,21 +67,47 @@ public class HeightActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
             prefs.edit().putInt("USER_HEIGHT", selectedHeight).apply();
 
-            Intent intent = new Intent(HeightActivity.this, Weight.class);
-            startActivity(intent);
+            startActivity(new Intent(HeightActivity.this, Weight.class));
             finish();
         });
     }
 
-    private void populateHeightList() {
+    private void populateHeightTicks() {
         for (int i = minHeight; i <= maxHeight; i++) {
-            TextView tv = new TextView(this);
-            tv.setText(String.valueOf(i));
-            tv.setTextSize(i == selectedHeight ? 36 : 24);
-            tv.setTextColor(getResources().getColor(R.color.white));
-            tv.setGravity(Gravity.CENTER);
-            tv.setPadding(0, 32, 0, 32);
-            heightContainer.addView(tv);
+            LinearLayout tickItem = new LinearLayout(this);
+            tickItem.setOrientation(LinearLayout.VERTICAL);
+            tickItem.setGravity(Gravity.CENTER);
+            tickItem.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+
+            // Tick line
+            View tick = new View(this);
+            int tickWidth = (i % 10 == 0) ? 60 : 30;
+            int tickHeight = (i == selectedHeight) ? 4 : 2;
+            LinearLayout.LayoutParams tickParams = new LinearLayout.LayoutParams(tickWidth, tickHeight);
+            tickParams.setMargins(0, 16, 0, 0);
+            tick.setLayoutParams(tickParams);
+            tick.setBackgroundColor(getResources().getColor(R.color.white));
+            tickItem.addView(tick);
+
+            // Label every 10 cm
+            if (i % 10 == 0) {
+                TextView label = new TextView(this);
+                label.setText(String.valueOf(i));
+                label.setTextColor(getResources().getColor(R.color.white));
+                label.setTextSize(12);
+                label.setPadding(0, 8, 0, 16);
+                label.setGravity(Gravity.CENTER);
+                tickItem.addView(label);
+            } else {
+                View spacer = new View(this);
+                spacer.setLayoutParams(new LinearLayout.LayoutParams(1, 32));
+                tickItem.addView(spacer);
+            }
+
+            heightContainer.addView(tickItem);
         }
     }
 
@@ -78,11 +115,20 @@ public class HeightActivity extends AppCompatActivity {
         selectedHeight = newHeight;
         heightText.setText(String.valueOf(selectedHeight));
 
-        int childCount = heightContainer.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            TextView tv = (TextView) heightContainer.getChildAt(i);
-            int value = minHeight + i;
-            tv.setTextSize(value == selectedHeight ? 36 : 24);
+        int index = newHeight - minHeight;
+        int count = heightContainer.getChildCount();
+
+        for (int i = 0; i < count; i++) {
+            LinearLayout tickItem = (LinearLayout) heightContainer.getChildAt(i);
+            View tick = tickItem.getChildAt(0); // first child is the tick
+
+            int tickWidth = ((minHeight + i) % 10 == 0) ? 60 : 30;
+            int tickHeight = (i == index) ? 4 : 2;
+
+            LinearLayout.LayoutParams tickParams = (LinearLayout.LayoutParams) tick.getLayoutParams();
+            tickParams.width = tickWidth;
+            tickParams.height = tickHeight;
+            tick.setLayoutParams(tickParams);
         }
     }
 

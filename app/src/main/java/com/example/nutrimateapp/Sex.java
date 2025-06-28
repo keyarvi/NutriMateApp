@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,7 @@ public class Sex extends AppCompatActivity {
 
     private String selectedSex = "";
     private CardView maleCard, femaleCard;
+    private TextView maleText, femaleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +35,30 @@ public class Sex extends AppCompatActivity {
 
         maleCard = findViewById(R.id.maleCard);
         femaleCard = findViewById(R.id.femaleCard);
+        maleText = findViewById(R.id.maleText);
+        femaleText = findViewById(R.id.femaleText);
 
         // Male selected
         maleCard.setOnClickListener(view -> {
             selectedSex = "Male";
-            maleCard.setSelected(true);
-            femaleCard.setSelected(false);
+            maleCard.setBackgroundResource(R.drawable.option_frame_blue);
+            femaleCard.setBackgroundResource(R.drawable.option_bg);
+
+            maleText.setTextColor(getResources().getColor(android.R.color.white));
+            femaleText.setTextColor(getResources().getColor(android.R.color.black));
         });
 
         // Female selected
         femaleCard.setOnClickListener(view -> {
             selectedSex = "Female";
-            femaleCard.setSelected(true);
-            maleCard.setSelected(false);
+            femaleCard.setBackgroundResource(R.drawable.option_frame_blue);
+            maleCard.setBackgroundResource(R.drawable.option_bg);
+
+            femaleText.setTextColor(getResources().getColor(android.R.color.white));
+            maleText.setTextColor(getResources().getColor(android.R.color.black));
         });
 
-        // Back button to go to Birthday activity
+        // Back button
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(Sex.this, Birthday.class);
@@ -56,7 +66,7 @@ public class Sex extends AppCompatActivity {
             finish();
         });
 
-        // Continue button to go to PrimaryGoal activity
+        // Continue button
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(view -> {
             if (selectedSex.isEmpty()) {

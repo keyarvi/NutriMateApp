@@ -51,6 +51,7 @@ public class Login extends AppCompatActivity {
                 }
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, MainActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);  // continue animation
                 finish();
             } else {
                 Toast.makeText(this, "Incorrect email or password", Toast.LENGTH_SHORT).show();

@@ -61,7 +61,8 @@ public class HowActiveAreYou extends AppCompatActivity {
         optionVery.setOnClickListener(selectListener);
         optionSuper.setOnClickListener(selectListener);
 
-        backButton.setOnClickListener(v -> finish());
+        backButton.setOnClickListener(v -> {finish();
+        });
 
         continueButton.setOnClickListener(v -> {
             if (selectedLabel.isEmpty()) {
@@ -81,10 +82,10 @@ public class HowActiveAreYou extends AppCompatActivity {
     }
 
     private void resetSelections() {
-        optionSedentary.setBackgroundResource(R.drawable.option_frame_white);
-        optionLight.setBackgroundResource(R.drawable.option_frame_white);
-        optionModerate.setBackgroundResource(R.drawable.option_frame_white);
-        optionVery.setBackgroundResource(R.drawable.option_frame_white);
-        optionSuper.setBackgroundResource(R.drawable.option_frame_white);
+        optionSedentary.setBackgroundResource(R.drawable.option_background);
+        optionLight.setBackgroundResource(R.drawable.option_background);
+        optionModerate.setBackgroundResource(R.drawable.option_background);
+        optionVery.setBackgroundResource(R.drawable.option_background);
+        optionSuper.setBackgroundResource(R.drawable.option_background);
     }
 }

@@ -99,7 +99,7 @@
         android:backgroundTint="#057EDB"
         android:elevation="4dp"
         android:paddingVertical="12dp"
-        android:text="Continue"
+        android:text="I Agree"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

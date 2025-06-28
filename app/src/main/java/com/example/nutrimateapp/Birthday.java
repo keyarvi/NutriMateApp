@@ -3,13 +3,10 @@ package com.example.nutrimateapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
 import androidx.activity.EdgeToEdge;
@@ -19,17 +16,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.lang.reflect.Field;
+import java.util.Calendar;
 
 public class Birthday extends AppCompatActivity {
 
-    private DatePicker datePicker;
+    private NumberPicker dayPicker, monthPicker, yearPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Prevent dark mode from messing with colors
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         EdgeToEdge.enable(this);
@@ -41,70 +36,105 @@ public class Birthday extends AppCompatActivity {
             return insets;
         });
 
-        datePicker = findViewById(R.id.datePicker);
-        setDatePickerWhite(datePicker); // ✅ White text and dividers (safe)
+        dayPicker = findViewById(R.id.dayPicker);
+        monthPicker = findViewById(R.id.monthPicker);
+        yearPicker = findViewById(R.id.yearPicker);
 
-        // Back button
+        setupPickers();
+
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(Birthday.this, Name.class);
-            startActivity(intent);
+            startActivity(new Intent(Birthday.this, Name.class));
             finish();
         });
 
-        // Continue button
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(view -> {
-            int day = datePicker.getDayOfMonth();
-            int month = datePicker.getMonth() + 1;
-            int year = datePicker.getYear();
+            int day = dayPicker.getValue();
+            int month = monthPicker.getValue(); // 1-12
+            int year = yearPicker.getValue();
+
+            Calendar selected = Calendar.getInstance();
+            selected.set(year, month - 1, day);
+
+            Calendar today = Calendar.getInstance();
+            if (selected.after(today)) {
+                dayPicker.setValue(today.get(Calendar.DAY_OF_MONTH));
+                monthPicker.setValue(today.get(Calendar.MONTH) + 1);
+                yearPicker.setValue(today.get(Calendar.YEAR));
+                return;
+            }
 
             String birthDate = year + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
 
             SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
             prefs.edit().putString("USER_BIRTHDAY", birthDate).apply();
 
-            Intent intent = new Intent(Birthday.this, Sex.class);
-            startActivity(intent);
+            startActivity(new Intent(Birthday.this, Sex.class));
         });
     }
 
-    // ✅ Safe way to make spinner text & dividers white
-    private void setDatePickerWhite(DatePicker datePicker) {
-        datePicker.post(() -> {
-            try {
-                LinearLayout layout1 = (LinearLayout) datePicker.getChildAt(0);
-                LinearLayout layout2 = (LinearLayout) layout1.getChildAt(0);
+    private void setupPickers() {
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
 
-                for (int i = 0; i < layout2.getChildCount(); i++) {
-                    View child = layout2.getChildAt(i);
-                    if (child instanceof NumberPicker) {
-                        NumberPicker picker = (NumberPicker) child;
+        final String[] monthNames = {
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        };
 
-                        // Set white text
-                        for (int j = 0; j < picker.getChildCount(); j++) {
-                            View pickerChild = picker.getChildAt(j);
-                            if (pickerChild instanceof EditText) {
-                                ((EditText) pickerChild).setTextColor(Color.WHITE);
-                            }
-                        }
+        // Month Picker
+        monthPicker.setMinValue(1);
+        monthPicker.setMaxValue(12);
+        monthPicker.setDisplayedValues(monthNames);
+        monthPicker.setValue(1);
+        setTextColor(monthPicker, Color.WHITE);
 
-                        // Set white divider line
-                        Field[] fields = NumberPicker.class.getDeclaredFields();
-                        for (Field field : fields) {
-                            if (field.getName().equals("mSelectionDivider")) {
-                                field.setAccessible(true);
-                                field.set(picker, new ColorDrawable(Color.WHITE));
-                                break;
-                            }
-                        }
+        // Day Picker
+        dayPicker.setMinValue(1);
+        dayPicker.setMaxValue(31);
+        dayPicker.setValue(1);
+        setTextColor(dayPicker, Color.WHITE);
 
-                        picker.invalidate(); // Refresh
-                    }
+        // Year Picker
+        yearPicker.setMinValue(1900);
+        yearPicker.setMaxValue(currentYear);
+        yearPicker.setValue(currentYear - 18); // Default age 18
+        setTextColor(yearPicker, Color.WHITE);
+
+        // Update day count on month/year change
+        monthPicker.setOnValueChangedListener((picker, oldVal, newVal) -> updateDayRange());
+        yearPicker.setOnValueChangedListener((picker, oldVal, newVal) -> updateDayRange());
+    }
+
+    private void updateDayRange() {
+        int month = monthPicker.getValue();
+        int year = yearPicker.getValue();
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month - 1);
+        int maxDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        int currentDay = dayPicker.getValue();
+        dayPicker.setMaxValue(maxDays);
+        if (currentDay > maxDays) {
+            dayPicker.setValue(maxDays);
+        }
+    }
+
+    private void setTextColor(NumberPicker picker, int color) {
+        int count = picker.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = picker.getChildAt(i);
+            if (child instanceof EditText) {
+                try {
+                    ((EditText) child).setTextColor(color);
+                    picker.invalidate();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        });
+        }
     }
 }

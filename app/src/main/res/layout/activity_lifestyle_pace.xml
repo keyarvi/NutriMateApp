@@ -1,195 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/mainbackground"
-    android:padding="17dp">
+    android:layout_height="match_parent">
 
-    <!-- 🔽 Bottom Buttons -->
-    <LinearLayout
-        android:id="@+id/bottomButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#EAEAED"
-            android:text="Back"
-            android:textColor="#050505"
-            android:gravity="center" />
-
-        <Button
-            android:id="@+id/continue_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#057EDB"
-            android:text="Continue"
-            android:textColor="#FFFFFF"
-            android:gravity="center" />
-    </LinearLayout>
-
-    <!-- 🔼 Scrollable Content -->
-    <ScrollView
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomButtons"
-        android:fillViewport="true">
+        android:scaleType="centerCrop"
+        android:src="@drawable/mainbackground"
+        android:contentDescription="@string/app_name" />
 
+    <!-- Foreground Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Scrollable Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What pace fits your lifestyle?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/subtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your journey should feel natural and motivating. Pick the pace that feels just right for you."
+                    android:textSize="14sp"
+                    android:textColor="#EEEEEE"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Option: Slow -->
+                <LinearLayout
+                    android:id="@+id/option_slow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="@drawable/option_background"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_slow"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/pace_slow_text"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Slow"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/pace_slow_calorie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+150 cal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <!-- Option: Steady -->
+                <LinearLayout
+                    android:id="@+id/option_steady"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="@drawable/option_background"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_steady"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/pace_steady_text"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Steady"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/pace_steady_calorie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+300 cal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <!-- Option: Fast -->
+                <LinearLayout
+                    android:id="@+id/option_fast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="@drawable/option_background"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_fast"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:id="@+id/pace_fast_text"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Fast"
+                        android:textSize="16sp"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/pace_fast_calorie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+500 cal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <!-- Calorie Preview -->
+                <TextView
+                    android:id="@+id/calorie_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:orientation="horizontal"
+            android:padding="18dp"
+            android:gravity="center">
 
-            <!-- Title -->
-            <TextView
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="What pace fits your lifestyle?"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="22dp" />
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#EAEAED"
+                android:text="Back"
+                android:textColor="#050505" />
 
-            <!-- Subtitle -->
-            <TextView
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/continueButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Your journey should feel natural and motivating. Pick the pace that feels just right for you."
-                android:textSize="14sp"
-                android:textColor="#EEEEEE"
-                android:gravity="center"
-                android:paddingBottom="28dp" />
-
-            <!-- SLOW OPTION -->
-            <LinearLayout
-                android:id="@+id/option_slow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:padding="18dp"
-                android:orientation="horizontal"
-                android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_slow"
-                    android:layout_marginEnd="12dp" />
-
-                <TextView
-                    android:id="@+id/pace_slow_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Slow"
-                    android:textSize="15sp"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/pace_slow_calorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+150 cal"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- STEADY OPTION -->
-            <LinearLayout
-                android:id="@+id/option_steady"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:padding="18dp"
-                android:orientation="horizontal"
-                android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_steady"
-                    android:layout_marginEnd="12dp" />
-
-                <TextView
-                    android:id="@+id/pace_steady_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Steady"
-                    android:textSize="15sp"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/pace_steady_calorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+300 cal"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- FAST OPTION -->
-            <LinearLayout
-                android:id="@+id/option_fast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:padding="18dp"
-                android:orientation="horizontal"
-                android:background="@drawable/option_frame_white"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_fast"
-                    android:layout_marginEnd="12dp" />
-
-                <TextView
-                    android:id="@+id/pace_fast_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Fast"
-                    android:textSize="15sp"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/pace_fast_calorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+500 cal"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Calorie Preview (Dynamic) -->
-            <TextView
-                android:id="@+id/calorie_preview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#057EDB"
+                android:text="Continue"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

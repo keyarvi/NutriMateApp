@@ -31,8 +31,8 @@ public class LifestylePace extends AppCompatActivity {
         optionSlow = findViewById(R.id.option_slow);
         optionSteady = findViewById(R.id.option_steady);
         optionFast = findViewById(R.id.option_fast);
-        backButton = findViewById(R.id.back_button);
-        continueButton = findViewById(R.id.continue_button);
+        backButton = findViewById(R.id.backButton);
+        continueButton = findViewById(R.id.continueButton);
 
         paceSlowCalorie = optionSlow.findViewById(R.id.pace_slow_calorie);
         paceSteadyCalorie = optionSteady.findViewById(R.id.pace_steady_calorie);
@@ -85,7 +85,8 @@ public class LifestylePace extends AppCompatActivity {
         optionSteady.setOnClickListener(v -> selectPace("Steady", optionSteady, 300, userGoal));
         optionFast.setOnClickListener(v -> selectPace("Fast", optionFast, 500, userGoal));
 
-        backButton.setOnClickListener(v -> finish());
+        backButton.setOnClickListener(v -> {finish();
+        });
 
         continueButton.setOnClickListener(v -> {
             if (selectedPace != null) {
@@ -116,9 +117,9 @@ public class LifestylePace extends AppCompatActivity {
         calorieOffset = offset;
 
         // Reset highlight styles
-        optionSlow.setBackgroundResource(R.drawable.option_frame_white);
-        optionSteady.setBackgroundResource(R.drawable.option_frame_white);
-        optionFast.setBackgroundResource(R.drawable.option_frame_white);
+        optionSlow.setBackgroundResource(R.drawable.option_background);
+        optionSteady.setBackgroundResource(R.drawable.option_background);
+        optionFast.setBackgroundResource(R.drawable.option_background);
 
         // Highlight selected layout
         selectedLayout.setBackgroundResource(R.drawable.option_frame_blue);

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DELAY = 5000; // 5 seconds
+    private static final int SPLASH_DELAY = 1000; // 1 seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

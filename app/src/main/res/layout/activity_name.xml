@@ -1,95 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/mainbackground"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Scrollable Content -->
-    <ScrollView
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mainbackground"
+        android:contentDescription="@string/app_name" />
 
+    <!-- Foreground Content -->
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Scrollable Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="18dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- Progress Dots (If you plan to add) -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What should we call you?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/subtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="We are so happy you're here! What name would you\nlike us to call you?"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Name Input -->
+                <EditText
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=""
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#E6E3E3"
+                    android:background="@drawable/white_underline"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="2dp"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Navigation Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
 
-            <!-- Progress Dots -->
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp" />
+                android:layout_weight="1"
+                android:backgroundTint="#EAEAED"
+                android:text="Back"
+                android:textColor="#050505" />
 
-            <!-- Title -->
-            <TextView
-                android:text="What should we call you?"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <!-- Subtitle -->
-            <TextView
-                android:text="We are so happy you're here! What name would you\nlike us to call you?"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:layout_marginBottom="24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <!-- Name Input with White Underline -->
-            <EditText
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/continueButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Name"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#E6E3E3"
-                android:background="@drawable/white_underline"
-                android:paddingTop="8dp"
-                android:paddingBottom="2dp"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="#057EDB"
+                android:text="Continue"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
-
-    <!-- Navigation Buttons (Fixed at Bottom) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#EAEAED"
-            android:text="Back"
-            android:textColor="#050505" />
-
-        <Button
-            android:id="@+id/continueButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="#057EDB"
-            android:text="Continue"
-            android:textColor="#FFFFFF" />
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>
