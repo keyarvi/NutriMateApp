@@ -25,26 +25,35 @@ public class Name extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_name);
 
-        // Adjust layout for system bars (fullscreen handling)
+        // Handle system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize UI components
+        // Initialize views
         userNameEditText = findViewById(R.id.userName);
         backButton = findViewById(R.id.backButton);
         continueButton = findViewById(R.id.continueButton);
 
-        // 🔙 Back button - returns to the Personalize screen
+        // 🔄 Clear the field on first click
+        userNameEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userNameEditText.setText("");
+                userNameEditText.setOnClickListener(null); // remove listener after first tap
+            }
+        });
+
+        // 🔙 Back button: go to Personalize screen
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(Name.this, Personalize.class);
             startActivity(intent);
-            finish(); // Optional: avoids stack buildup
+            finish(); // avoid activity stacking
         });
 
-        // 👉 Continue button - saves name and proceeds to Birthday screen
+        // 👉 Continue button: save name and go to Birthday screen
         continueButton.setOnClickListener(view -> {
             String userName = userNameEditText.getText().toString().trim();
 
@@ -53,7 +62,7 @@ public class Name extends AppCompatActivity {
                 return;
             }
 
-            // Save name using SharedPreferences
+            // Save name in SharedPreferences
             SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("USER_NAME", userName);
