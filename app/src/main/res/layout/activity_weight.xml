@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:background="@drawable/mainbackground">
 
-    <!-- 🔼 Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -18,14 +17,6 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <!-- Progress Dots (if needed) -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="22dp" />
-
-            <!-- Title -->
             <TextView
                 android:text="Let's personalize your progress"
                 android:textSize="20sp"
@@ -36,7 +27,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <!-- Subtitle -->
             <TextView
                 android:text="Your starting point and goals are key to building a plan that fits your nutritional needs."
                 android:textSize="14sp"
@@ -46,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <!-- Current Weight -->
             <TextView
                 android:text="Current Weight"
                 android:textSize="16sp"
@@ -69,10 +58,9 @@
                 android:id="@+id/currentWeightSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="60"
-                android:progress="30"/>
+                android:progressDrawable="@drawable/seekbar_white"
+                android:thumb="@drawable/seekbar_thumb_white" />
 
-            <!-- Target Weight -->
             <TextView
                 android:text="Target Weight"
                 android:textSize="16sp"
@@ -96,13 +84,11 @@
                 android:id="@+id/targetWeightSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="60"
-                android:progress="30"/>
-
+                android:progressDrawable="@drawable/seekbar_white"
+                android:thumb="@drawable/seekbar_thumb_white" />
         </LinearLayout>
     </ScrollView>
 
-    <!-- 🔽 Navigation Buttons (Fixed at Bottom) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
