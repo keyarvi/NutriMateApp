@@ -37,15 +37,15 @@ public class Sex extends AppCompatActivity {
         // Male selected
         maleCard.setOnClickListener(view -> {
             selectedSex = "Male";
-            maleCard.setCardBackgroundColor(getColor(R.color.selected_card));
-            femaleCard.setCardBackgroundColor(getColor(android.R.color.white));
+            maleCard.setSelected(true);
+            femaleCard.setSelected(false);
         });
 
         // Female selected
         femaleCard.setOnClickListener(view -> {
             selectedSex = "Female";
-            femaleCard.setCardBackgroundColor(getColor(R.color.selected_card));
-            maleCard.setCardBackgroundColor(getColor(android.R.color.white));
+            femaleCard.setSelected(true);
+            maleCard.setSelected(false);
         });
 
         // Back button to go to Birthday activity
