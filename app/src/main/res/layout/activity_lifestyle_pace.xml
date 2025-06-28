@@ -5,7 +5,7 @@
     android:background="@drawable/mainbackground"
     android:padding="17dp">
 
-    <!-- 🔽 Bottom Buttons (Uniform to Previous Activity) -->
+    <!-- 🔽 Bottom Buttons -->
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="match_parent"
@@ -27,8 +27,8 @@
         <Button
             android:id="@+id/continue_button"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:backgroundTint="#057EDB"
             android:text="Continue"
@@ -36,7 +36,7 @@
             android:gravity="center" />
     </LinearLayout>
 
-    <!-- 🔼 Scrollable Content (Above Buttons) -->
+    <!-- 🔼 Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,7 +59,7 @@
                 android:textColor="#FFFFFF"
                 android:gravity="center"
                 android:paddingBottom="10dp"
-                android:layout_marginTop="22dp"/>
+                android:layout_marginTop="22dp" />
 
             <!-- Subtitle -->
             <TextView
@@ -71,7 +71,7 @@
                 android:gravity="center"
                 android:paddingBottom="28dp" />
 
-            <!-- SLOW -->
+            <!-- SLOW OPTION -->
             <LinearLayout
                 android:id="@+id/option_slow"
                 android:layout_width="match_parent"
@@ -89,14 +89,16 @@
                     android:layout_marginEnd="12dp" />
 
                 <TextView
+                    android:id="@+id/pace_slow_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Slow\nGentle changes at your own rhythm"
+                    android:text="Slow"
                     android:textSize="15sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/pace_slow_calorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+150 cal"
@@ -105,7 +107,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- STEADY -->
+            <!-- STEADY OPTION -->
             <LinearLayout
                 android:id="@+id/option_steady"
                 android:layout_width="match_parent"
@@ -123,14 +125,16 @@
                     android:layout_marginEnd="12dp" />
 
                 <TextView
+                    android:id="@+id/pace_steady_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Steady\nBalanced habits and consistent progress"
+                    android:text="Steady"
                     android:textSize="15sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/pace_steady_calorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+300 cal"
@@ -139,7 +143,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- FAST -->
+            <!-- FAST OPTION -->
             <LinearLayout
                 android:id="@+id/option_fast"
                 android:layout_width="match_parent"
@@ -157,14 +161,16 @@
                     android:layout_marginEnd="12dp" />
 
                 <TextView
+                    android:id="@+id/pace_fast_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Fast\nAccelerated results with stronger effort"
+                    android:text="Fast"
                     android:textSize="15sp"
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/pace_fast_calorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+500 cal"
@@ -172,6 +178,17 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <!-- Calorie Preview (Dynamic) -->
+            <TextView
+                android:id="@+id/calorie_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"/>
         </LinearLayout>
     </ScrollView>
 

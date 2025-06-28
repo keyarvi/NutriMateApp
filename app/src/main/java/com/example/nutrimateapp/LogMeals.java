@@ -72,22 +72,24 @@ public class LogMeals extends AppCompatActivity {
         progressCarbs = findViewById(R.id.progressCarbs);
         progressFats = findViewById(R.id.progressFats);
 
-        SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
-        String userName = prefs.getString("USER_NAME", "User");
-        if (userName != null && !userName.isEmpty()) {
-            tvUsername.setText("Hello, " + userName + "!");
-        }
+        loadUserTargetGoals();  // Load name and targets
 
-        // Retrieve target macros from SharedPreferences
+        btnAddMeal.setOnClickListener(v -> showAddMealDialog());
+        fabCamera.setOnClickListener(v -> openCamera());
+    }
+
+    private void loadUserTargetGoals() {
+        SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
+
+        // Get user name and targets
+        String userName = prefs.getString("USER_NAME", "User");
         targetCalories = prefs.getFloat("TARGET_CALORIES", 2000);
         targetProtein = prefs.getFloat("TARGET_PROTEIN", 100);
         targetCarbs = prefs.getFloat("TARGET_CARBS", 250);
         targetFats = prefs.getFloat("TARGET_FATS", 70);
 
+        tvUsername.setText("Hello, " + userName + "!");
         updateProgressBars();
-
-        btnAddMeal.setOnClickListener(v -> showAddMealDialog());
-        fabCamera.setOnClickListener(v -> openCamera());
     }
 
     private void showAddMealDialog() {
@@ -168,7 +170,6 @@ public class LogMeals extends AppCompatActivity {
 
         container.addView(mealCard);
 
-        // Update totals and progress bars
         totalCalories += calories;
         totalProtein += protein;
         totalCarbs += carbs;

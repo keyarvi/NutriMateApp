@@ -1,12 +1,13 @@
 package com.example.nutrimateapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +17,6 @@ import java.util.GregorianCalendar;
 
 public class Complete extends AppCompatActivity {
 
-    LinearLayout starsLayout;
-    ImageView[] stars = new ImageView[5];
     ImageView iconWaterDrop, iconSearch, iconLightning, iconMedical, mainCheck;
 
     @Override
@@ -25,8 +24,7 @@ public class Complete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete);
 
-        // UI Setup
-        starsLayout = findViewById(R.id.stars_layout);
+        // === UI Setup ===
         iconWaterDrop = findViewById(R.id.icon_water_drop);
         iconSearch = findViewById(R.id.icon_search);
         iconLightning = findViewById(R.id.icon_lightning);
@@ -42,17 +40,6 @@ public class Complete extends AppCompatActivity {
         iconLightning.startAnimation(bounce);
         iconMedical.startAnimation(bounce);
 
-        for (int i = 0; i < 5; i++) {
-            stars[i] = (ImageView) starsLayout.getChildAt(i);
-            final int index = i;
-            stars[i].setOnClickListener(v ->
-                    new AlertDialog.Builder(this)
-                            .setMessage("You rated " + (index + 1) + " star" + (index == 0 ? "" : "s"))
-                            .setPositiveButton("OK", null)
-                            .show()
-            );
-        }
-
         // === SharedPreferences Retrieval ===
         SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
         String userName = prefs.getString("USER_NAME", "User");
@@ -61,10 +48,11 @@ public class Complete extends AppCompatActivity {
         String userGoal = prefs.getString("USER_GOAL", "Not set");
         String userPace = prefs.getString("USER_PACE", "None");
         int paceOffset = prefs.getInt("USER_PACE_CALORIE_OFFSET", 0);
-        int userHeight = prefs.getInt("USER_HEIGHT", 0); // cm
-        int currentWeight = prefs.getInt("USER_CURRENT_WEIGHT", 0); // kg
+        int userHeight = prefs.getInt("USER_HEIGHT", 0);
+        int currentWeight = prefs.getInt("USER_CURRENT_WEIGHT", 0);
         int targetWeight = prefs.getInt("USER_TARGET_WEIGHT", 0);
-        String activityLevel = prefs.getString("USER_ACTIVITY_LEVEL", "Sedentary");
+        String activityLevel = prefs.getString("USER_ACTIVITY_LABEL", "Sedentary");
+        float activityMultiplier = prefs.getFloat("USER_ACTIVITY_MULTIPLIER", 1.2f);
 
         // === Compute Age ===
         int age = 0;
@@ -82,10 +70,20 @@ public class Complete extends AppCompatActivity {
                 if (today.get(Calendar.DAY_OF_YEAR) < birth.get(Calendar.DAY_OF_YEAR)) {
                     age--;
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        // === Input Validation ===
+        if (age <= 0 || currentWeight <= 0 || userHeight <= 0) {
+            Log.e("NutriMate", "Invalid profile data for calculation.");
+            new AlertDialog.Builder(this)
+                    .setTitle("Error")
+                    .setMessage("Invalid input data. Please update your profile.")
+                    .setPositiveButton("OK", null)
+                    .show();
+            return;
         }
 
         // === BMR Calculation (Mifflin-St Jeor Equation) ===
@@ -96,34 +94,34 @@ public class Complete extends AppCompatActivity {
             bmr = 10 * currentWeight + 6.25 * userHeight - 5 * age - 161;
         }
 
-        // === TDEE Multiplier ===
-        double activityMultiplier = 1.2;
-        switch (activityLevel) {
-            case "Lightly Active": activityMultiplier = 1.375; break;
-            case "Moderately Active": activityMultiplier = 1.55; break;
-            case "Very Active": activityMultiplier = 1.725; break;
-            case "Super Active": activityMultiplier = 1.9; break;
-        }
-
+        // === TDEE Calculation ===
         double tdee = bmr * activityMultiplier;
+
+        // === Save raw TDEE for LifestylePace Preview ===
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("USER_TDEE", (int) tdee);  // save TDEE for next screen
 
         // === Adjust for Goal ===
         double goalAdjustedCalories = tdee;
         switch (userGoal) {
-            case "Lose Weight": goalAdjustedCalories -= 500; break;
-            case "Gain Weight and Muscle": goalAdjustedCalories += 300; break;
+            case "Lose Weight":
+                goalAdjustedCalories -= 500;
+                break;
+            case "Gain Weight and Muscle":
+                goalAdjustedCalories += paceOffset;
+                break;
+            case "Maintain":
+                // no change
+                break;
         }
 
-        // === Add Lifestyle Pace Offset ===
-        goalAdjustedCalories += paceOffset;
-
-        // === Macronutrient Calculations ===
+        // === Macronutrient Calculation ===
         double proteinPerKg = 0.8;
         switch (activityLevel) {
-            case "Lightly Active": proteinPerKg = 1.0; break;
-            case "Moderately Active": proteinPerKg = 1.4; break;
-            case "Very Active": proteinPerKg = 1.8; break;
-            case "Super Active": proteinPerKg = 2.2; break;
+            case "Lightly Active": proteinPerKg = 1.2; break;
+            case "Moderately Active": proteinPerKg = 1.5; break;
+            case "Very Active": proteinPerKg = 2.0; break;
+            case "Super Active": proteinPerKg = 2.5; break;
         }
 
         double proteinGrams = proteinPerKg * currentWeight;
@@ -135,27 +133,26 @@ public class Complete extends AppCompatActivity {
         double remainingCals = goalAdjustedCalories - (proteinCals + fatCals);
         double carbGrams = remainingCals / 4;
 
-        // === Save Macronutrients and Calories for Progress Bars ===
-        SharedPreferences.Editor editor = prefs.edit();
+        // === Save targets for progress bars ===
         editor.putFloat("TARGET_CALORIES", (float) goalAdjustedCalories);
         editor.putFloat("TARGET_PROTEIN", (float) proteinGrams);
         editor.putFloat("TARGET_CARBS", (float) carbGrams);
         editor.putFloat("TARGET_FATS", (float) fatGrams);
         editor.apply();
 
-        // === Display Final Summary via AlertDialog ===
+        // === Final Summary ===
         String summary = "Hi " + userName +
                 "\nAge: " + age +
                 "\nSex: " + userSex +
                 "\nHeight: " + userHeight + " cm" +
                 "\nWeight: " + currentWeight + " kg" +
-                "\nActivity: " + activityLevel +
+                "\nActivity: " + activityLevel + " (" + activityMultiplier + "x)" +
                 "\nGoal: " + userGoal +
-                "\nPace: " + userPace + " (+" + paceOffset + " cal)" +
-                "\n\nCalories: " + (int) goalAdjustedCalories + " kcal" +
-                "\nProtein: " + (int) proteinGrams + " g" +
-                "\nFats: " + (int) fatGrams + " g" +
-                "\nCarbs: " + (int) carbGrams + " g";
+                "\nPace: " + userPace + " (" + paceOffset + " cal)" +
+                "\n\nCalories: " + String.format("%.0f kcal", goalAdjustedCalories) +
+                "\nProtein: " + String.format("%.0f g", proteinGrams) +
+                "\nFats: " + String.format("%.0f g", fatGrams) +
+                "\nCarbs: " + String.format("%.0f g", carbGrams);
 
         new AlertDialog.Builder(this)
                 .setTitle("Nutrition Summary")
@@ -164,5 +161,13 @@ public class Complete extends AppCompatActivity {
                 .show();
 
         Log.d("NutriMate_FinalSummary", summary);
+
+        // === Proceed to LogMeals ===
+        Button continueButton = findViewById(R.id.continuebtn);
+        continueButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Complete.this, LogMeals.class);
+            startActivity(intent);
+            finish();
+        });
     }
 }
