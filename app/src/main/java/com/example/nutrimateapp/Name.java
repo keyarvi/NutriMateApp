@@ -25,26 +25,26 @@ public class Name extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_name);
 
-        // Handle system bars (for fullscreen layout)
+        // Adjust layout for system bars (fullscreen handling)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize views
+        // Initialize UI components
         userNameEditText = findViewById(R.id.userName);
         backButton = findViewById(R.id.backButton);
         continueButton = findViewById(R.id.continueButton);
 
-        // 🔙 Go back to Personalize screen
+        // 🔙 Back button - returns to the Personalize screen
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(Name.this, Personalize.class);
             startActivity(intent);
-            finish(); // optional: remove this if you want to keep history
+            finish(); // Optional: avoids stack buildup
         });
 
-        // 👉 Continue to Birthday screen
+        // 👉 Continue button - saves name and proceeds to Birthday screen
         continueButton.setOnClickListener(view -> {
             String userName = userNameEditText.getText().toString().trim();
 
@@ -53,13 +53,13 @@ public class Name extends AppCompatActivity {
                 return;
             }
 
-            // Save name in SharedPreferences
+            // Save name using SharedPreferences
             SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("USER_NAME", userName);
             editor.apply();
 
-            // Navigate to Birthday screen
+            // Go to next screen
             Intent intent = new Intent(Name.this, Birthday.class);
             startActivity(intent);
         });

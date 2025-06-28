@@ -24,8 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-            </LinearLayout>
+                android:layout_marginBottom="16dp" />
 
             <!-- Title -->
             <TextView
@@ -54,14 +53,15 @@
                 android:id="@+id/userName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="Name"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#E6E3E3"
-                android:background="@drawable/white_underline" />
-
+                android:background="@drawable/white_underline"
+                android:paddingTop="8dp"
+                android:paddingBottom="2dp"
+                android:layout_marginBottom="16dp" />
         </LinearLayout>
     </ScrollView>
 
