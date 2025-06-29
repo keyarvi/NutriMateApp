@@ -3,6 +3,9 @@
     package="com.example.nutrimateapp"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +17,6 @@
         android:theme="@style/Theme.NutriMateApp"
         tools:targetApi="31">
 
-        <!-- Launcher -->
         <activity
             android:name=".Login"
             android:exported="true">

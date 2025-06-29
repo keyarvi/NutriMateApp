@@ -156,6 +156,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Macronutrients Card -->
     <!-- Macronutrients Card with vertical bars -->
     <!-- Macronutrients Card with vertical bars beside labels -->
     <androidx.cardview.widget.CardView
@@ -287,88 +288,73 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- No Meals Placeholder -->
-    <LinearLayout
-        android:id="@+id/placeholderNoMeals"
+    <!-- Skipping unchanged macros for brevity -->
+
+    <!-- Meal List & Placeholder wrapped in ScrollView -->
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/cardMacros"
+        app:layout_constraintBottom_toTopOf="@id/btnAddMeal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/imgFoodPlaceholder"
-            android:layout_marginTop="50dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_food"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/tvNoMealsTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No Meals Logged Yet"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#555"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvNoMealsSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Track your meals with a quick photo or upload."
-            android:textColor="#888"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/placeholderNoMeals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
 
-    <!-- Display Actual Meals -->
-    <LinearLayout
-        android:id="@+id/mealContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/placeholderNoMeals"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_food"
+                    android:layout_marginBottom="8dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Meals Logged Yet"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#555"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track your meals with a quick photo or upload."
+                    android:textColor="#888"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mealContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Add Meal Button -->
     <Button
         android:id="@+id/btnAddMeal"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#057EDB"
+        android:layout_margin="16dp"
         android:text="Add a Meal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/placeholderNoMeals" />
-
-    <!-- Footer Background -->
-    <View
-        android:id="@+id/footerBackground"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#1976D2"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <!-- FAB Camera -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_camera"
-        app:backgroundTint="#024290"
+        android:backgroundTint="#057EDB"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="@android:color/white" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

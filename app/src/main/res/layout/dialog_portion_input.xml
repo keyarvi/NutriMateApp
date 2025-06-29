@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@drawable/dialog_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:text="Meal Portions"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:text="Enter the amount (in grams) of each food you had:"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Food Entry Block -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/option_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView android:text="🍗 Fried Chicken" android:textStyle="bold" android:textSize="16sp" />
+            <EditText
+                android:id="@+id/inputChicken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Grams (e.g., 120)" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/option_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView android:text="🥦 Broccoli" android:textStyle="bold" android:textSize="16sp" />
+            <EditText
+                android:id="@+id/inputBroccoli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Grams (e.g., 60)" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/option_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView android:text="🍚 Rice" android:textStyle="bold" android:textSize="16sp" />
+            <EditText
+                android:id="@+id/inputRice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Grams (e.g., 100)" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSubmitPortions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Meals"
+            android:backgroundTint="#1976D2"
+            android:textColor="#FFF"
+            android:padding="12dp"/>
+    </LinearLayout>
+</ScrollView>
