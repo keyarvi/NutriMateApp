@@ -12,19 +12,23 @@
         android:gravity="center_horizontal">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Meal Portions"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#000"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Enter the amount (in grams) of each food you had:"
             android:textSize="14sp"
             android:textColor="#666"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp" />
 
-        <!-- Food Entry Block -->
+        <!-- This part is wrong the Meal name must not be fixed it must be change based on the meals in the file name of image uploaded -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,15 +37,24 @@
             android:padding="16dp"
             android:layout_marginBottom="12dp">
 
-            <TextView android:text="🍗 Fried Chicken" android:textStyle="bold" android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍗 Fried Chicken"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/inputChicken"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:padding="12dp"
                 android:inputType="number"
                 android:hint="Grams (e.g., 120)" />
         </LinearLayout>
 
+        <!-- This part is wrong the Meal name must not be fixed it must be change based on the meals in the file name of image uploaded -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,15 +63,24 @@
             android:padding="16dp"
             android:layout_marginBottom="12dp">
 
-            <TextView android:text="🥦 Broccoli" android:textStyle="bold" android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🥦 Broccoli"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/inputBroccoli"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:padding="12dp"
                 android:inputType="number"
                 android:hint="Grams (e.g., 60)" />
         </LinearLayout>
 
+        <!-- This part is wrong the Meal name must not be fixed it must be change based on the meals in the file name of image uploaded -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,11 +89,19 @@
             android:padding="16dp"
             android:layout_marginBottom="20dp">
 
-            <TextView android:text="🍚 Rice" android:textStyle="bold" android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🍚 Rice"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/inputRice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:padding="12dp"
                 android:inputType="number"
                 android:hint="Grams (e.g., 100)" />
         </LinearLayout>
@@ -83,6 +113,6 @@
             android:text="Add to Meals"
             android:backgroundTint="#1976D2"
             android:textColor="#FFF"
-            android:padding="12dp"/>
+            android:padding="12dp" />
     </LinearLayout>
 </ScrollView>

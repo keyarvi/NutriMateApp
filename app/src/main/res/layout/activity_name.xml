@@ -58,7 +58,7 @@
                     android:id="@+id/subtitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="We are so happy you're here! What name would you\nlike us to call you?"
+                    android:text="We are so happy you're here! What name would\nyou like us to call you?"
                     android:textSize="14sp"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
