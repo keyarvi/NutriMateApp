@@ -145,11 +145,18 @@ public class LogMeals extends AppCompatActivity {
                 Uri selectedImage = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-                    if (selectedImage.toString().contains("test1")) {
-                        showPortionInputDialog(bitmap);
+                    String path = selectedImage.toString();
+
+                    if (path.contains("test1")) {
+                        showMealPortionDialog(bitmap, "Fried Chicken, Broccoli and Rice", new String[]{"Chicken", "Broccoli", "Rice"});
+                    } else if (path.contains("test2")) {
+                        showMealPortionDialog(bitmap, "Pork, Egg and Rice", new String[]{"Pork", "Egg", "Rice"});
+                    } else if (path.contains("test3")) {
+                        showMealPortionDialog(bitmap, "Tuna, Cabbage and Sweet Potato", new String[]{"Tuna", "Cabbage", "Sweet Potato"});
                     } else {
                         displayDetectedMeal(bitmap, "Spaghetti Bolognese", 620, 35, 70, 18);
                     }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -174,9 +181,9 @@ public class LogMeals extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_portion_input, null);
         dialog.setContentView(view);
 
-        EditText inputChicken = view.findViewById(R.id.inputChicken);
-        EditText inputBroccoli = view.findViewById(R.id.inputBroccoli);
-        EditText inputRice = view.findViewById(R.id.inputRice);
+        EditText inputChicken = view.findViewById(R.id.inputItem1);
+        EditText inputBroccoli = view.findViewById(R.id.inputItem2);
+        EditText inputRice = view.findViewById(R.id.inputItem3);
         Button btnSubmit = view.findViewById(R.id.btnSubmitPortions);
 
         btnSubmit.setOnClickListener(v -> {
@@ -211,6 +218,68 @@ public class LogMeals extends AppCompatActivity {
             return 0;
         }
     }
+
+    private void showMealPortionDialog(Bitmap image, String mealName, String[] items) {
+        Dialog dialog = new Dialog(LogMeals.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_portion_input, null);
+        dialog.setContentView(view);
+
+        TextView label1 = view.findViewById(R.id.labelItem1);
+        TextView label2 = view.findViewById(R.id.labelItem2);
+        TextView label3 = view.findViewById(R.id.labelItem3);
+
+        EditText input1 = view.findViewById(R.id.inputItem1);
+        EditText input2 = view.findViewById(R.id.inputItem2);
+        EditText input3 = view.findViewById(R.id.inputItem3);
+        Button btnSubmit = view.findViewById(R.id.btnSubmitPortions);
+
+        // Set labels and hints dynamically
+        label1.setText(items[0]);
+        label2.setText(items[1]);
+        label3.setText(items[2]);
+
+        input1.setHint(items[0] + " in grams");
+        input2.setHint(items[1] + " in grams");
+        input3.setHint(items[2] + " in grams");
+
+        btnSubmit.setOnClickListener(v -> {
+            int g1 = parseInput(input1.getText().toString());
+            int g2 = parseInput(input2.getText().toString());
+            int g3 = parseInput(input3.getText().toString());
+
+            float cal = 0, pro = 0, carb = 0, fat = 0;
+
+            switch (mealName) {
+                case "Fried Chicken, Broccoli and Rice":
+                    cal = (g1 * 2.6f) + (g2 * 0.34f) + (g3 * 1.3f);
+                    pro = (g1 * 0.24f) + (g2 * 0.028f) + (g3 * 0.027f);
+                    carb = (g1 * 0.06f) + (g2 * 0.066f) + (g3 * 0.28f);
+                    fat = (g1 * 0.15f) + (g2 * 0.004f) + (g3 * 0.003f);
+                    break;
+
+                case "Pork, Egg and Rice":
+                    cal = (g1 * 2.42f) + (g2 * 1.55f) + (g3 * 1.3f);
+                    pro = (g1 * 0.27f) + (g2 * 0.13f) + (g3 * 0.027f);
+                    carb = (g1 * 0f) + (g2 * 0.01f) + (g3 * 0.28f);
+                    fat = (g1 * 0.14f) + (g2 * 0.11f) + (g3 * 0.003f);
+                    break;
+
+                case "Tuna, Cabbage and Sweet Potato":
+                    cal = (g1 * 1.3f) + (g2 * 0.25f) + (g3 * 0.86f);
+                    pro = (g1 * 0.28f) + (g2 * 0.013f) + (g3 * 0.016f);
+                    carb = (g1 * 0f) + (g2 * 0.06f) + (g3 * 0.20f);
+                    fat = (g1 * 0.01f) + (g2 * 0.002f) + (g3 * 0.003f);
+                    break;
+            }
+
+            displayDetectedMeal(image, mealName, Math.round(cal), Math.round(pro), Math.round(carb), Math.round(fat));
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
 
     private void displayDetectedMeal(Bitmap mealImage, String mealName, int calories, int protein, int carbs, int fats) {
         LinearLayout placeholder = findViewById(R.id.placeholderNoMeals);

@@ -28,7 +28,6 @@
             android:textColor="#666"
             android:layout_marginBottom="16dp" />
 
-        <!-- This part is wrong the Meal name must not be fixed it must be change based on the meals in the file name of image uploaded -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,14 +37,17 @@
             android:layout_marginBottom="12dp">
 
             <TextView
+                android:id="@+id/labelItem1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🍗 Fried Chicken"
+                android:text="Food Item"
                 android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginBottom="4dp" />
 
             <EditText
-                android:id="@+id/inputChicken"
+                android:id="@+id/inputItem1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -54,7 +56,6 @@
                 android:hint="Grams (e.g., 120)" />
         </LinearLayout>
 
-        <!-- This part is wrong the Meal name must not be fixed it must be change based on the meals in the file name of image uploaded -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,47 +65,54 @@
             android:layout_marginBottom="12dp">
 
             <TextView
+                android:id="@+id/labelItem2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🥦 Broccoli"
+                android:text="Food Item"
                 android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginBottom="4dp" />
 
             <EditText
-                android:id="@+id/inputBroccoli"
+                android:id="@+id/inputItem2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:inputType="number"
-                android:hint="Grams (e.g., 60)" />
+                android:hint="Grams (e.g., 120)" />
         </LinearLayout>
 
-        <!-- This part is wrong the Meal name must not be fixed it must be change based on the meals in the file name of image uploaded -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/option_bg"
             android:padding="16dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="12dp">
 
             <TextView
+                android:id="@+id/labelItem3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🍚 Rice"
+                android:text="Food Item"
                 android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginBottom="4dp" />
 
             <EditText
-                android:id="@+id/inputRice"
+                android:id="@+id/inputItem3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:inputType="number"
-                android:hint="Grams (e.g., 100)" />
+                android:hint="Grams (e.g., 120)" />
         </LinearLayout>
+
 
         <Button
             android:id="@+id/btnSubmitPortions"
