@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 
@@ -47,8 +46,6 @@ public class LogMeals extends AppCompatActivity {
     private float targetProtein;
     private float targetCarbs;
     private float targetFats;
-
-    private Bitmap capturedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +79,6 @@ public class LogMeals extends AppCompatActivity {
 
     private void loadUserTargetGoals() {
         SharedPreferences prefs = getSharedPreferences("NutriMatePrefs", MODE_PRIVATE);
-
         String userName = prefs.getString("USER_NAME", "User");
         targetCalories = prefs.getFloat("TARGET_CALORIES", 2000);
         targetProtein = prefs.getFloat("TARGET_PROTEIN", 100);
@@ -126,13 +122,6 @@ public class LogMeals extends AppCompatActivity {
         startActivityForResult(pickPhoto, REQUEST_IMAGE_PICK);
     }
 
-    private void openImageFilePicker() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.setType("image/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, REQUEST_IMAGE_FILE);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -148,11 +137,17 @@ public class LogMeals extends AppCompatActivity {
                     String path = selectedImage.toString();
 
                     if (path.contains("test1")) {
-                        showMealPortionDialog(bitmap, "Fried Chicken, Broccoli and Rice", new String[]{"Chicken", "Broccoli", "Rice"});
+                        simulateDetectionAndShowDialog(bitmap, "Fried Chicken, Broccoli and Rice", new String[]{"Chicken", "Broccoli", "Rice"});
                     } else if (path.contains("test2")) {
-                        showMealPortionDialog(bitmap, "Pork, Egg and Rice", new String[]{"Pork", "Egg", "Rice"});
+                        simulateDetectionAndShowDialog(bitmap, "Fried Fish, Omelet and Rice", new String[]{"Fried Fish", "Omelet", "Rice"});
                     } else if (path.contains("test3")) {
-                        showMealPortionDialog(bitmap, "Tuna, Cabbage and Sweet Potato", new String[]{"Tuna", "Cabbage", "Sweet Potato"});
+                        simulateDetectionAndShowDialog(bitmap, "Omelet and Fried Rice", new String[]{"Omelet", "Fried Rice", ""});
+                    } else if (path.contains("test4")) {
+                        simulateDetectionAndShowDialog(bitmap, "Beef Steak and Rice", new String[]{"Beef Steak", "Rice", ""});
+                    } else if (path.contains("test5")) {
+                        simulateDetectionAndShowDialog(bitmap, "Beef Curry and Rice", new String[]{"Beef Curry", "Rice", ""});
+                    } else if (path.contains("test6")) {
+                        simulateDetectionAndShowDialog(bitmap, "Sausage and Egg", new String[]{"Sausage", "Egg Sunny-side Up", ""});
                     } else {
                         displayDetectedMeal(bitmap, "Spaghetti Bolognese", 620, 35, 70, 18);
                     }
@@ -160,63 +155,21 @@ public class LogMeals extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if (requestCode == REQUEST_IMAGE_FILE && data != null) {
-                Uri selectedImageUri = data.getData();
-                if (selectedImageUri != null) {
-                    try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-                        displayDetectedMeal(bitmap, "Uploaded Image Meal", 480, 30, 50, 15);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(this, "Unable to load image.", Toast.LENGTH_SHORT).show();
-                    }
-                }
             }
         }
     }
 
-    private void showPortionInputDialog(Bitmap image) {
-        Dialog dialog = new Dialog(LogMeals.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_portion_input, null);
-        dialog.setContentView(view);
+    private void simulateDetectionAndShowDialog(Bitmap bitmap, String mealName, String[] items) {
+        Dialog loadingDialog = new Dialog(LogMeals.this);
+        loadingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        loadingDialog.setContentView(R.layout.dialog_loading);
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
 
-        EditText inputChicken = view.findViewById(R.id.inputItem1);
-        EditText inputBroccoli = view.findViewById(R.id.inputItem2);
-        EditText inputRice = view.findViewById(R.id.inputItem3);
-        Button btnSubmit = view.findViewById(R.id.btnSubmitPortions);
-
-        btnSubmit.setOnClickListener(v -> {
-            int gChicken = parseInput(inputChicken.getText().toString());
-            int gBroccoli = parseInput(inputBroccoli.getText().toString());
-            int gRice = parseInput(inputRice.getText().toString());
-
-            float cal = (gChicken * 2.6f) + (gBroccoli * 0.34f) + (gRice * 1.3f);
-            float pro = (gChicken * 0.24f) + (gBroccoli * 0.028f) + (gRice * 0.027f);
-            float carb = (gChicken * 0.06f) + (gBroccoli * 0.066f) + (gRice * 0.28f);
-            float fat = (gChicken * 0.15f) + (gBroccoli * 0.004f) + (gRice * 0.003f);
-
-            displayDetectedMeal(
-                    image,
-                    "Fried Chicken, Broccoli and Rice",
-                    Math.round(cal),
-                    Math.round(pro),
-                    Math.round(carb),
-                    Math.round(fat)
-            );
-
-            dialog.dismiss();
-        });
-
-        dialog.show();
-    }
-
-    private int parseInput(String text) {
-        try {
-            return Integer.parseInt(text.trim());
-        } catch (Exception e) {
-            return 0;
-        }
+        new Handler().postDelayed(() -> {
+            loadingDialog.dismiss();
+            showMealPortionDialog(bitmap, mealName, items);
+        }, 1500); // 1.5 second delay
     }
 
     private void showMealPortionDialog(Bitmap image, String mealName, String[] items) {
@@ -234,7 +187,6 @@ public class LogMeals extends AppCompatActivity {
         EditText input3 = view.findViewById(R.id.inputItem3);
         Button btnSubmit = view.findViewById(R.id.btnSubmitPortions);
 
-        // Set labels and hints dynamically
         label1.setText(items[0]);
         label2.setText(items[1]);
         label3.setText(items[2]);
@@ -257,19 +209,35 @@ public class LogMeals extends AppCompatActivity {
                     carb = (g1 * 0.06f) + (g2 * 0.066f) + (g3 * 0.28f);
                     fat = (g1 * 0.15f) + (g2 * 0.004f) + (g3 * 0.003f);
                     break;
-
-                case "Pork, Egg and Rice":
-                    cal = (g1 * 2.42f) + (g2 * 1.55f) + (g3 * 1.3f);
-                    pro = (g1 * 0.27f) + (g2 * 0.13f) + (g3 * 0.027f);
-                    carb = (g1 * 0f) + (g2 * 0.01f) + (g3 * 0.28f);
-                    fat = (g1 * 0.14f) + (g2 * 0.11f) + (g3 * 0.003f);
+                case "Fried Fish, Omelet and Rice":
+                    cal = (g1 * 2.2f) + (g2 * 1.54f) + (g3 * 1.3f);
+                    pro = (g1 * 0.15f) + (g2 * 0.10f) + (g3 * 0.027f);
+                    carb = (g1 * 0.10f) + (g2 * 0.015f) + (g3 * 0.28f);
+                    fat = (g1 * 0.12f) + (g2 * 0.12f) + (g3 * 0.003f);
                     break;
-
-                case "Tuna, Cabbage and Sweet Potato":
-                    cal = (g1 * 1.3f) + (g2 * 0.25f) + (g3 * 0.86f);
-                    pro = (g1 * 0.28f) + (g2 * 0.013f) + (g3 * 0.016f);
-                    carb = (g1 * 0f) + (g2 * 0.06f) + (g3 * 0.20f);
-                    fat = (g1 * 0.01f) + (g2 * 0.002f) + (g3 * 0.003f);
+                case "Omelet and Fried Rice":
+                    cal = (g1 * 1.54f) + (g2 * 1.8f);
+                    pro = (g1 * 0.10f) + (g2 * 0.06f);
+                    carb = (g1 * 0.015f) + (g2 * 0.24f);
+                    fat = (g1 * 0.12f) + (g2 * 0.07f);
+                    break;
+                case "Beef Steak and Rice":
+                    cal = (g1 * 2.71f) + (g2 * 1.3f);
+                    pro = (g1 * 0.25f) + (g2 * 0.027f);
+                    carb = (g1 * 0.0f) + (g2 * 0.28f);
+                    fat = (g1 * 0.20f) + (g2 * 0.003f);
+                    break;
+                case "Beef Curry and Rice":
+                    cal = (g1 * 2.1f) + (g2 * 1.3f);
+                    pro = (g1 * 0.09f) + (g2 * 0.027f);
+                    carb = (g1 * 0.26f) + (g2 * 0.28f);
+                    fat = (g1 * 0.09f) + (g2 * 0.003f);
+                    break;
+                case "Sausage and Egg":
+                    cal = (g1 * 3.0f) + (g2 * 1.43f);
+                    pro = (g1 * 0.12f) + (g2 * 0.10f);
+                    carb = (g1 * 0.02f) + (g2 * 0.011f);
+                    fat = (g1 * 0.27f) + (g2 * 0.11f);
                     break;
             }
 
@@ -280,6 +248,13 @@ public class LogMeals extends AppCompatActivity {
         dialog.show();
     }
 
+    private int parseInput(String text) {
+        try {
+            return Integer.parseInt(text.trim());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 
     private void displayDetectedMeal(Bitmap mealImage, String mealName, int calories, int protein, int carbs, int fats) {
         LinearLayout placeholder = findViewById(R.id.placeholderNoMeals);
@@ -296,11 +271,7 @@ public class LogMeals extends AppCompatActivity {
 
         imgMeal.setImageBitmap(mealImage);
         tvMealName.setText(mealName);
-        tvMealNutrition.setText(
-                        protein + "g Protein  |  " +
-                        carbs + "g Carbs  |  " +
-                        fats + "g Fats"
-        );
+        tvMealNutrition.setText(protein + "g Protein  |  " + carbs + "g Carbs  |  " + fats + "g Fats");
 
         container.addView(mealCard);
 
