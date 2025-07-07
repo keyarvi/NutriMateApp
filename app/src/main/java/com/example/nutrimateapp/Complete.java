@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nutrimateapp.database.AppDatabase;
+import com.example.nutrimateapp.model.UserProfile;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -140,12 +143,26 @@ public class Complete extends AppCompatActivity {
         editor.putFloat("TARGET_FATS", (float) fatGrams);
         editor.apply();
 
+        // === Save User Data to Room Database ===
+        UserProfile user = new UserProfile();
+        user.name = userName;
+        user.birthday = birthDate;
+        user.sex = userSex;
+        user.height = userHeight;
+        user.weight = currentWeight;
+        user.primaryGoal = userGoal;
+        user.activityLevel = activityLevel;
+        user.lifestylePace = userPace;
+
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+        db.userProfileDao().insert(user);  // save user to database
+
         // === Proceed to LogMeals ===
         Button continueButton = findViewById(R.id.continuebtn);
         continueButton.setOnClickListener(v -> {
             Intent intent = new Intent(Complete.this, LogMeals.class);
             startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);  // continue animation
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         });
     }
