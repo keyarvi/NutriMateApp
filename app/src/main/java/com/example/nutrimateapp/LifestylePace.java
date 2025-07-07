@@ -132,6 +132,5 @@ public class LifestylePace extends AppCompatActivity {
             previewCalories = baseCalories + offset;
         }
 
-        caloriePreview.setText("Estimated daily goal: " + previewCalories + " kcal");
     }
 }

@@ -1,0 +1,101 @@
+id,name,calories,protein_g,carbs_g,fats_g
+1,rice,130,2.7,28.0,0.3
+2,eels on rice,200,12.0,20.0,9.0
+3,pilaf,170,3.0,30.0,5.0
+4,chicken-'n'-egg on rice,180,10.0,24.0,6.0
+5,pork cutlet on rice,240,11.0,30.0,10.0
+6,beef curry,210,9.0,26.0,9.0
+7,sushi,140,6.0,25.0,3.0
+8,chicken rice,165,8.0,22.0,6.0
+9,fried rice,180,6.0,24.0,7.0
+10,tempura bowl,250,8.0,28.0,13.0
+11,bibimbap,185,8.0,27.0,6.5
+12,toast,265,7.5,44.0,3.3
+13,croissant,406,8.0,45.0,21.0
+14,roll bread,270,8.0,49.0,4.0
+15,raisin bread,295,7.0,53.0,4.5
+16,chip butty,290,5.0,45.0,10.0
+17,hamburger,250,12.0,25.0,11.0
+18,pizza,265,11.0,33.0,10.0
+19,sandwiches,240,9.0,28.0,9.0
+20,udon noodle,130,3.0,26.0,0.5
+21,tempura udon,180,5.0,28.0,6.0
+22,soba noodle,120,5.0,24.0,1.0
+23,ramen noodle,290,8.0,35.0,13.0
+24,beef noodle,230,10.0,30.0,9.0
+25,tensin noodle,260,9.0,34.0,11.0
+26,fried noodle,270,7.0,35.0,10.0
+27,spaghetti,160,5.0,30.0,2.0
+28,Japanese-style pancake,210,8.0,28.0,8.0
+29,takoyaki,175,5.0,20.0,9.0
+30,gratin,220,6.0,20.0,13.0
+31,sauteed vegetables,85,2.0,10.0,4.0
+32,croquette,190,4.0,22.0,10.0
+33,grilled eggplant,95,1.0,10.0,5.0
+34,sauteed spinach,80,2.5,6.0,5.0
+35,vegetable tempura,210,3.0,20.0,14.0
+36,miso soup,40,3.0,4.0,1.5
+37,potage,90,2.0,9.0,5.0
+38,sausage,300,12.0,2.0,27.0
+39,oden,90,6.0,8.0,2.0
+40,omelet,154,10.0,1.5,12.0
+41,ganmodoki,170,8.0,10.0,10.0
+42,jiaozi,200,8.0,25.0,7.0
+43,stew,160,6.0,18.0,6.0
+44,teriyaki grilled fish,180,20.0,5.0,8.0
+45,fried fish,220,15.0,10.0,12.0
+46,grilled salmon,208,22.0,0.0,13.0
+47,salmon meuniere,240,20.0,3.0,16.0
+48,sashimi,120,20.0,0.0,3.0
+49,grilled pacific saury,200,22.0,0.0,12.0
+50,sukiyaki,220,14.0,10.0,12.0
+51,sweet and sour pork,210,12.0,18.0,9.0
+52,lightly roasted fish,150,22.0,0.0,6.0
+53,steamed egg hotchpotch,90,7.0,3.0,5.0
+54,tempura,240,7.0,22.0,14.0
+55,fried chicken,260,15.0,10.0,17.0
+56,sirloin cutlet,310,18.0,12.0,20.0
+57,nanbanzuke,180,13.0,10.0,7.0
+58,boiled fish,130,18.0,0.0,5.0
+59,seasoned beef with potatoes,190,9.0,16.0,9.0
+60,hambarg steak,250,15.0,12.0,15.0
+61,beef steak,271,25.0,0.0,20.0
+62,dried fish,290,35.0,0.0,16.0
+63,ginger pork saute,240,16.0,10.0,12.0
+64,spicy chili-flavored tofu,180,8.0,10.0,11.0
+65,yakitori,165,15.0,2.0,10.0
+66,cabbage roll,120,6.0,12.0,5.0
+67,rolled omelet,160,9.0,5.0,10.0
+68,egg sunny-side up,143,10.0,1.1,11.0
+69,fermented soybeans,200,17.0,12.0,11.0
+70,cold tofu,80,8.0,2.0,4.0
+71,egg roll,154,10.0,1.5,12.0
+72,chilled noodle,140,4.0,25.0,2.0
+73,stir-fried beef and peppers,190,13.0,8.0,10.0
+74,simmered pork,220,15.0,6.0,14.0
+75,boiled chicken and vegetables,150,12.0,8.0,6.0
+76,sashimi bowl,180,16.0,15.0,6.0
+77,sushi bowl,195,14.0,20.0,7.0
+78,fish-shaped pancake with bean jam,230,5.0,40.0,6.0
+79,shrimp with chill source,190,14.0,10.0,8.0
+80,roast chicken,190,20.0,0.0,10.0
+81,steamed meat dumpling,210,10.0,20.0,8.0
+82,omelet with fried rice,210,9.0,22.0,10.0
+83,cutlet curry,270,12.0,30.0,12.0
+84,spaghetti meat sauce,180,7.0,27.0,6.0
+85,fried shrimp,250,15.0,10.0,14.0
+86,potato salad,140,2.0,15.0,7.0
+87,green salad,35,1.0,6.0,0.5
+88,macaroni salad,190,4.0,25.0,8.0
+89,Japanese tofu and vegetable chowder,110,5.0,10.0,5.0
+90,pork miso soup,120,7.0,6.0,7.0
+91,chinese soup,60,3.0,4.0,3.0
+92,beef bowl,235,13.0,28.0,9.0
+93,kinpira-style sauteed burdock,110,2.0,12.0,6.0
+94,rice ball,180,4.0,35.0,3.0
+95,pizza toast,260,10.0,30.0,12.0
+96,dipping noodles,180,6.0,30.0,2.5
+97,hot dog,290,10.0,20.0,18.0
+98,french fries,312,3.0,41.0,15.0
+99,mixed rice,170,4.0,30.0,4.0
+100,goya chanpuru,155,8.0,10.0,9.0

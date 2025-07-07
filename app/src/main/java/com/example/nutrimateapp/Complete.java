@@ -140,28 +140,6 @@ public class Complete extends AppCompatActivity {
         editor.putFloat("TARGET_FATS", (float) fatGrams);
         editor.apply();
 
-        // === Final Summary ===
-        String summary = "Hi " + userName +
-                "\nAge: " + age +
-                "\nSex: " + userSex +
-                "\nHeight: " + userHeight + " cm" +
-                "\nWeight: " + currentWeight + " kg" +
-                "\nActivity: " + activityLevel + " (" + activityMultiplier + "x)" +
-                "\nGoal: " + userGoal +
-                "\nPace: " + userPace + " (" + paceOffset + " cal)" +
-                "\n\nCalories: " + String.format("%.0f kcal", goalAdjustedCalories) +
-                "\nProtein: " + String.format("%.0f g", proteinGrams) +
-                "\nFats: " + String.format("%.0f g", fatGrams) +
-                "\nCarbs: " + String.format("%.0f g", carbGrams);
-
-        new AlertDialog.Builder(this)
-                .setTitle("Nutrition Summary")
-                .setMessage(summary)
-                .setPositiveButton("OK", null)
-                .show();
-
-        Log.d("NutriMate_FinalSummary", summary);
-
         // === Proceed to LogMeals ===
         Button continueButton = findViewById(R.id.continuebtn);
         continueButton.setOnClickListener(v -> {
